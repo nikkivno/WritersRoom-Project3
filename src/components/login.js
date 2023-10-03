@@ -6,7 +6,7 @@ function Login() {
     
     return (
         <div>
-            <div>
+            <div className="header">
                 <h1>Sign Up / Login</h1>
             </div>
         </div>
