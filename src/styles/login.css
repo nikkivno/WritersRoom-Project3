@@ -1,9 +1,41 @@
-.header {
-    width: 100%;
-    
-}
-
 h1 {
     color: white;
     font-family: 'Italiana', serif;
 }
+
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.login {
+    margin: 20px;
+}
+
+.signup {
+    margin: 20px;
+}
+
+form {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    align-self: center;  
+    flex-direction: column; 
+}
+
+input {
+    margin-top: 15px;
+}
+
+button {
+    background-color: white;
+    border: black;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
