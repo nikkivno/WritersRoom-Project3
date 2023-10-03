@@ -5,10 +5,12 @@ function Navbar() {
     const currentPage = window.location.pathname;
     return (
         <nav>
-            <h1>Writer's Room</h1>
+            <div className="title">
+                <h1>Writer's Room</h1>
+            </div>
             <ul>
-                <li>Login/Sign Up</li>
-                <li>About</li>
+                <li><a href='/' className={currentPage === '/' ? 'active' : ''}>Login/Sign Up</a></li>
+                <li><a href='/about' className={currentPage === '/about' ? 'active' : ''}>About</a></li>
             </ul>
         </nav>
     );
