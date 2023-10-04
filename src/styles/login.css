@@ -14,10 +14,13 @@ h1 {
 
 .login {
     margin: 20px;
+    padding-right: 15px;
+
 }
 
 .signup {
     margin: 20px;
+    padding-left: 15px;
 }
 
 form {
@@ -30,6 +33,10 @@ form {
 
 input {
     margin-top: 15px;
+    border: none; 
+    width: 300px;
+    height: 30px;
+    font-size: large;
 }
 
 button {
@@ -37,5 +44,8 @@ button {
     border: black;
     border-radius: 10px;
     margin-top: 15px;
+    height: 30px;
+    width: 80px;
+    font-size: medium;
 }
 
