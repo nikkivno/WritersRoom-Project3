@@ -10,8 +10,9 @@ router.get('/', userController.getAllUsers);
 router.get('/:userId', userController.getUserById);
 
 // POST to create new user
-router.post('/', userController.createUser);
+router.post('/register', userController.register);
 
+router.post('/login', userController.login)
 // PUT to update user by ID
 router.put('/:userId', userController.updateUser);
 
