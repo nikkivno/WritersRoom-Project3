@@ -7,6 +7,7 @@ import Login from './components/login';
 import Prompt from './components/prompt';
 import Step2 from './components/step2.js';
 import Step3 from './components/step3';
+import Step4 from './components/step4';
 
 function App() {
     let Component
@@ -28,8 +29,11 @@ function App() {
             case '/step3':
             Component = Step3
             break
-
+            case '/step4':
+            Component = Step4
+            break
     }
+    
     return (
     <div>
         <Navbar />
