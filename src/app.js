@@ -4,6 +4,7 @@ import Navbar from './components/navbar';
 import Footer from './components/footer';
 import About from './components/about';
 import Login from './components/login';
+import Prompt from './components/prompt';
 
 function App() {
     let Component
@@ -13,7 +14,10 @@ function App() {
             break
                 case "/about":
                     Component = About
-                    break    
+                    break   
+                        case "/newWork":
+                            Component = Prompt
+                            break 
     }
     return (
     <div>
