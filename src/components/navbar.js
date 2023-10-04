@@ -10,6 +10,7 @@ function Navbar() {
             </div>
             <ul>
                 <li><a href='/' className={currentPage === '/' ? 'active' : ''}>Login/Sign Up</a></li>
+                <li><a href='/newWork' className={currentPage === '/newWork' ? 'active' : ''}>New Work</a></li>
                 <li><a href='/about' className={currentPage === '/about' ? 'active' : ''}>About</a></li>
             </ul>
         </nav>
