@@ -20,8 +20,11 @@ mongoose
     // Once connected, set up your routes
     app.use('/', routes);
 
+    app.use(express.static('../client/build'));
+    require('./routes/htmlRoutes')(app);
+
     // Start the Express server
-    const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT || 3001;
     app.listen(PORT, () => {
       console.log(`Server started on port ${PORT}`);
     });
