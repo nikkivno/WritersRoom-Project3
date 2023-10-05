@@ -84,11 +84,9 @@ async function deletePrompt(req, res) {
     }
 
     await Prompt.deleteOne({ _id: req.params.id });
-    res
-      .status(200)
-      .json({
-        message: `Prompt with id ${req.params.id} successfully deleted`,
-      });
+    res.status(200).json({
+      message: `Prompt with id ${req.params.id} successfully deleted`,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json('Error deleting prompt: ', error);
