@@ -1,22 +1,24 @@
 // Dependencies for server
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const userRoutes = require('./routes/api/userRoutes');
+const routes = require('./routes');
 
 // Middleware setup
 app.use(express.json());
 
 // Connect to the database using the connection string
-mongoose.connect('mongodb://127.0.0.1:27017/writers-room', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose
+  .connect('mongodb://127.0.0.1:27017/writers-room', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log('Connected to MongoDB');
-    
+
     // Once connected, set up your routes
-    app.use('/api/users', userRoutes);
+    app.use('/', routes);
 
     // Start the Express server
     const PORT = process.env.PORT || 3000;
