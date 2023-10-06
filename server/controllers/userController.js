@@ -1,10 +1,10 @@
 // Dependencies for MongoDB
 const mongoose = require('mongoose');
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-
-async function register(req, res){
-
+async function register(req, res) {
   // Our register logic starts here
   try {
     // Get user input
@@ -12,7 +12,7 @@ async function register(req, res){
 
     // Validate user input
     if (!(email && password && first_name && last_name)) {
-      res.status(400).send("All input is required");
+      return res.status(400).send('All input is required');
     }
 
     // check if user already exist
@@ -20,7 +20,8 @@ async function register(req, res){
     const oldUser = await User.findOne({ email });
 
     if (oldUser) {
-      return res.status(409).send("User Already Exist. Please Login");
+      console.log('User already exists');
+      return res.status(409).send('User Already Exist. Please Login');
     }
 
     //Encrypt user password
@@ -39,7 +40,7 @@ async function register(req, res){
       { user_id: user._id, email },
       process.env.TOKEN_KEY,
       {
-        expiresIn: "2h",
+        expiresIn: '2h',
       }
     );
     // save user token
@@ -49,60 +50,62 @@ async function register(req, res){
     res.status(201).json(user);
   } catch (err) {
     console.log(err);
-  }}
-  // Our register logic ends here
+    res.status(500).json(err);
+  }
+}
+// Our register logic ends here
 
+async function login(req, res) {
+  // Our login logic starts here
+  try {
+    // Get user input
+    const { email, password } = req.body;
 
-async function login (req, res) {
-
-    // Our login logic starts here
-    try {
-      // Get user input
-      const { email, password } = req.body;
-  
-      // Validate user input
-      if (!(email && password)) {
-        res.status(400).send("All input is required");
-      }
-      // Validate if user exist in our database
-      const user = await User.findOne({ email });
-  
-      if (user && (await bcrypt.compare(password, user.password))) {
-        // Create token
-        const token = jwt.sign(
-          { user_id: user._id, email },
-          process.env.TOKEN_KEY,
-          {
-            expiresIn: "2h",
-          }
-        );
-  
-        // save user token
-        user.token = token;
-  
-        // user
-        res.status(200).json(user);
-      }
-      res.status(400).send("Invalid Credentials");
-    } catch (err) {
-      console.log(err);
+    // Validate user input
+    if (!(email && password)) {
+      console.log('Missing input');
+      return res.status(400).send('All input is required');
     }
-    // Our register logic ends here
-  };
+    // Validate if user exist in our database
+    const user = await User.findOne({ email });
 
+    if (user && (await bcrypt.compare(password, user.password))) {
+      // Create token
+      const token = jwt.sign(
+        { user_id: user._id, email },
+        process.env.TOKEN_KEY,
+        {
+          expiresIn: '2h',
+        }
+      );
 
+      // save user token
+      user.token = token;
+
+      // user
+      return res.status(200).json(user);
+    }
+    res.status(400).send('Invalid Credentials');
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+  // Our register logic ends here
+}
 
 module.exports = {
-// GET all Users
+  // GET all Users
   getAllUsers: async (req, res) => {
     try {
       const users = await User.find();
       res.status(200).json(users);
     } catch (error) {
-      res.status(500).json({ message: 'Error getting users', error: error.message });
+      res
+        .status(500)
+        .json({ message: 'Error getting users', error: error.message });
     }
   },
-// GET user by ID
+  // GET user by ID
   getUserById: async (req, res) => {
     try {
       const user = await User.findById(req.params.userId);
@@ -111,20 +114,24 @@ module.exports = {
       }
       res.status(200).json(user);
     } catch (error) {
-      res.status(500).json({ message: 'Error getting user', error: error.message });
+      res
+        .status(500)
+        .json({ message: 'Error getting user', error: error.message });
     }
   },
-// Create User
+  // Create User
   createUser: async (req, res) => {
     try {
       const newUser = new User(req.body);
       await newUser.save();
       res.status(201).json(newUser);
     } catch (error) {
-      res.status(400).json({ message: 'Error creating user', error: error.message });
+      res
+        .status(400)
+        .json({ message: 'Error creating user', error: error.message });
     }
   },
-// Update User
+  // Update User
   updateUser: async (req, res) => {
     try {
       const updatedUser = await User.findByIdAndUpdate(
@@ -137,28 +144,32 @@ module.exports = {
       }
       res.status(200).json(updatedUser);
     } catch (error) {
-      res.status(400).json({ message: 'Error updating user', error: error.message });
+      res
+        .status(400)
+        .json({ message: 'Error updating user', error: error.message });
     }
   },
-// Delete User
-deleteUser: async (req, res) => {
-  try {
-    const userId = req.params.userId;
+  // Delete User
+  deleteUser: async (req, res) => {
+    try {
+      const userId = req.params.userId;
 
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Delete the user using deleteOne
+      await User.deleteOne({ _id: userId });
+
+      res.status(200).json({ message: 'User and associated thoughts deleted' });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: 'Error deleting user', error: error.message });
     }
+  },
 
-    // Delete the user using deleteOne
-    await User.deleteOne({ _id: userId });
-
-    res.status(200).json({ message: 'User and associated thoughts deleted' });
-  } catch (error) {
-    res.status(500).json({ message: 'Error deleting user', error: error.message });
-  }
-}, 
-
-register, login
-
+  register,
+  login,
 };
