@@ -13,32 +13,7 @@ import Writing from './components/writing';
 
 function App() {
         const [isAuthenticated, setIsAuthenticated] = useState(false);
-    // let Component
-    // switch (window.location.pathname) {
-        // navbar
-        // case "/":
-        //     Component = Login
-        //     break
-        // case "/about":
-        //     Component = About
-        //     break  
-        // case "/newwork":
-        //     Component = Prompt
-        //     break 
-        //     // in component transition to next steps in New Work process  
-        // case "/step2":
-        //     Component = Step2
-        //     break
-        // case '/step3':
-        //     Component = Step3
-        //     break
-        // case '/step4':
-        //     Component = Step4
-        //     break
-        // case '/writing':
-        //     Component = Writing
-        //     break
-    
+
     return (
     
         <BrowserRouter>
