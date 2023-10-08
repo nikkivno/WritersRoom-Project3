@@ -17,23 +17,23 @@ function App() {
         case "/":
             Component = Login
             break
-            case "/about":
+        case "/about":
             Component = About
             break  
-            case "/newwork":
+        case "/newwork":
             Component = Prompt
             break 
             // in component transition to next steps in New Work process  
-            case "/step2":
+        case "/step2":
             Component = Step2
             break
-            case '/step3':
+        case '/step3':
             Component = Step3
             break
-            case '/step4':
+        case '/step4':
             Component = Step4
             break
-            case '/writing':
+        case '/writing':
             Component = Writing
             break
     }
