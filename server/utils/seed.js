@@ -19,8 +19,10 @@ mongoose
 const seedData = {
   users: [
     {
-      username: 'jared.stratton',
+      first_name: 'jared',
+      last_name: 'stratton',
       email: 'jared@seeds.com',
+      password: 'test',
       friends: [],
     },
     {
