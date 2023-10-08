@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import Navbar from './components/navbar';
@@ -12,7 +12,7 @@ import Step4 from './components/step4';
 import Writing from './components/writing';
 
 function App() {
-    const isAuthenticated = false;
+        const [isAuthenticated, setIsAuthenticated] = useState(false);
     // let Component
     // switch (window.location.pathname) {
         // navbar
