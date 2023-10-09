@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import Navbar from './components/navbar';
@@ -12,12 +12,20 @@ import Step4 from './components/step4';
 import Writing from './components/writing';
 
 function App() {
-        const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    return (
-    
-        <BrowserRouter>
-        <div>
+  useEffect(() => {
+    // Get JWT from local storage
+    const jwt = JSON.parse(localStorage.getItem('jwt'));
+
+    if (jwt) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  return (
+    <BrowserRouter>
+      <div>
         <Navbar />
         <Switch>
           <Route path="/" exact component={Login} />
@@ -26,13 +34,16 @@ function App() {
           <Route path="/step2" component={isAuthenticated ? Step2 : Login} />
           <Route path="/step3" component={isAuthenticated ? Step3 : Login} />
           <Route path="/step4" component={isAuthenticated ? Step4 : Login} />
-          <Route path="/writing" component={isAuthenticated ? Writing : Login} />
+          <Route
+            path="/writing"
+            component={isAuthenticated ? Writing : Login}
+          />
           <Redirect to="/" />
         </Switch>
         <Footer />
-        </div>
-        </BrowserRouter>
-    );
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;

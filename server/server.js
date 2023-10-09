@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const routes = require('./routes');
+const path = require('path');
 
 // Middleware setup
 app.use(express.json());
@@ -20,7 +21,7 @@ mongoose
     // Once connected, set up your routes
     app.use('/', routes);
 
-    app.use(express.static('../client/build'));
+    app.use(express.static(path.join(__dirname, '../client/build')));
     require('./routes/htmlRoutes')(app);
 
     // Start the Express server

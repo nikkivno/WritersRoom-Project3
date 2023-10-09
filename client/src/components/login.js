@@ -35,6 +35,18 @@ function Login() {
           password: password,
         }),
       });
+
+      const data = await response.json();
+
+      //   alert with error
+      if (response.status === 400) {
+        alert(data.message);
+      }
+
+      //   if successful login, change page & set token
+      if (response.status === 200) {
+        localStorage.setItem('jwt', JSON.stringify(data.token));
+      }
     } catch (error) {
       console.log('Error logging in: ', error);
     }
@@ -55,6 +67,18 @@ function Login() {
           password: password,
         }),
       });
+
+      const data = response.json();
+
+      //   alert user with error
+      if (response.status === 400 || response.status === 409) {
+        alert(data.message);
+      }
+
+      //   if successful, change page
+      if (response.status === 200) {
+        localStorage.setItem('jwt', JSON.stringify(data.token));
+      }
     } catch (error) {
       console.log('Error registering in: ', error);
     }
