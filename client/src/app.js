@@ -15,11 +15,27 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    // Get JWT from local storage
+    // Get JWT from local storage & validate it if it exists
     const jwt = JSON.parse(localStorage.getItem('jwt'));
 
     if (jwt) {
-      setIsAuthenticated(true);
+      async function validateToken() {
+        try {
+          const response = await fetch('/api/validate', {
+            headers: {
+              'x-access-token': jwt,
+            },
+          });
+
+          if (response.ok) {
+            setIsAuthenticated(true);
+          }
+        } catch (error) {
+          console.log('Error validating token: ', error);
+        }
+      }
+
+      validateToken();
     }
   }, []);
 

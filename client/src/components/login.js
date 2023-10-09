@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import '../styles/login.css';
 
@@ -7,6 +8,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+
+  const history = useHistory();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -45,7 +48,9 @@ function Login() {
 
       //   if successful login, change page & set token
       if (response.status === 200) {
+        console.log('Success logging in.');
         localStorage.setItem('jwt', JSON.stringify(data.token));
+        history.push('/newwork');
       }
     } catch (error) {
       console.log('Error logging in: ', error);
@@ -77,7 +82,9 @@ function Login() {
 
       //   if successful, change page
       if (response.status === 200) {
+        console.log('Success registering.');
         localStorage.setItem('jwt', JSON.stringify(data.token));
+        history.push('/newwork');
       }
     } catch (error) {
       console.log('Error registering in: ', error);
