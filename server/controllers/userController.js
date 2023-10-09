@@ -12,7 +12,7 @@ async function register(req, res) {
 
     // Validate user input
     if (!(email && password && first_name && last_name)) {
-      return res.status(400).send('All input is required');
+      return res.status(400).json({ message: 'All input is required' });
     }
 
     // check if user already exist
@@ -21,7 +21,9 @@ async function register(req, res) {
 
     if (oldUser) {
       console.log('User already exists');
-      return res.status(409).send('User Already Exist. Please Login');
+      return res
+        .status(409)
+        .json({ message: 'User Already Exists. Please Login' });
     }
 
     //Encrypt user password
@@ -47,7 +49,7 @@ async function register(req, res) {
     user.token = token;
 
     // return new user
-    res.status(201).json(user);
+    res.status(200).json(user);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -64,7 +66,7 @@ async function login(req, res) {
     // Validate user input
     if (!(email && password)) {
       console.log('Missing input');
-      return res.status(400).send('All input is required');
+      return res.status(400).json({ message: 'All input is required' });
     }
     // Validate if user exist in our database
     const user = await User.findOne({ email });
@@ -85,7 +87,7 @@ async function login(req, res) {
       // user
       return res.status(200).json(user);
     }
-    res.status(400).send('Invalid Credentials');
+    res.status(400).json({ message: 'Invalid Credentials' });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

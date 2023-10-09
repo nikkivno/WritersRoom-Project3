@@ -5,7 +5,7 @@ const Prompt = require('../models/Prompt');
 // request a new prompt from OpenAI
 async function newPrompt(req, res) {
   try {
-    const prompt = await requestPrompt(req.body.genre, req.body.type);
+    const prompt = await requestPrompt(req.body.keywords);
 
     res.json(prompt);
   } catch (error) {
