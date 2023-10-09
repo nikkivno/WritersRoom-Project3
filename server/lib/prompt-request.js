@@ -6,8 +6,8 @@ const openaiClient = new openai.OpenAI({
 });
 
 // function to request a prompt from api
-async function requestPrompt(genre, type) {
-  const request = `Create a writing prompt for a ${genre} ${type}.`;
+async function requestPrompt(keywords) {
+  const request = `Create a writing prompt for a novel with these keywords: ${keywords}`;
 
   const response = await openaiClient.chat.completions.create({
     messages: [{ role: 'user', content: request }],
