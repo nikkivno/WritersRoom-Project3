@@ -41,7 +41,7 @@ const handleFormSubmit = async (e) => {
                     <label htmlFor='Question1'>Who are the main characters?</label>
                     <input 
                         value={textInput1}
-                        name='Question1'
+                        name='textInput1'
                         onChange={handleInputChange}
                         type='text'
                         required
@@ -51,7 +51,7 @@ const handleFormSubmit = async (e) => {
                     <label htmlFor='Question2'>What is the reason the characters are together or seperated?</label>
                     <input 
                          value={textInput2}
-                         name='Question2'
+                         name='textInput2'
                          onChange={handleInputChange}
                          type='text'
                          required
@@ -61,7 +61,7 @@ const handleFormSubmit = async (e) => {
                     <label htmlFor='Question3'>When is the story taking place?</label>
                     <input 
                          value={textInput3}
-                         name='Question2'
+                         name='textInput3'
                          onChange={handleInputChange}
                          type='text'
                          required
@@ -71,7 +71,7 @@ const handleFormSubmit = async (e) => {
                     <label htmlFor='Question4'>Where is the location of the story?</label>
                     <input 
                          value={textInput4}
-                         name='Question2'
+                         name='textInput4'
                          onChange={handleInputChange}
                          type='text'
                          required
@@ -81,7 +81,7 @@ const handleFormSubmit = async (e) => {
                     <label htmlFor='Question5'>What is the inciting action that propells the characters through the story?</label>
                     <input 
                          value={textInput5}
-                         name='Question2'
+                         name='textInput5'
                          onChange={handleInputChange}
                          type='text'
                          required
