@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import '../styles/prompt.css';
+import decode from 'jwt-decode';
 
 function Prompt() {
   const currentPage = window.location.pathname;
@@ -36,6 +37,36 @@ function Prompt() {
       console.log('Error requesting a prompt: ', error);
     }
   };
+  const handleNextStep = async (e) => {
+    e.preventDefault();
+    const promptEl = document.getElementById('generatedPrompt');
+    const token = localStorage.getItem('jwt');
+    const userEmail = decode(token).email;
+
+    localStorage.setItem('promptText', promptEl.innerHTML);
+
+    try {
+      const promptResponse = await fetch('/api/prompts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: promptEl.innerHTML,
+          email: userEmail,
+        }),
+      });
+
+      const newPrompt = await promptResponse.json();
+
+      if (promptResponse.ok) {
+        localStorage.setItem('promptId', newPrompt.id);
+        document.location.href = '/step2';
+      }
+    } catch (error) {
+      console.log('Error adding prompt to the database: ', error);
+    }
+  };
 
   return (
     <div>
@@ -61,7 +92,7 @@ function Prompt() {
         <p id="generatedPrompt"></p>
       </div>
       <div>
-        <button>
+        <button onClick={handleNextStep}>
           <a href="/step2" className={currentPage === '/step2' ? 'active' : ''}>
             Next Step
           </a>

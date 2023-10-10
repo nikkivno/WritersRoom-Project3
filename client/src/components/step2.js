@@ -2,7 +2,35 @@ import React, {useState} from 'react';
 import '../styles/step2.css';
 
 function Step2() {
-    const currentPage = window.location.pathname;
+  const currentPage = window.location.pathname;
+
+  useEffect(() => {
+    async function fetchData() {
+      const promptEl = document.getElementById('prompt');
+      const promptId = localStorage.getItem('promptId');
+      // const promptText = localStorage.getItem('promptText');
+
+      try {
+        const response = await fetch(`/api/prompts/${promptId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const prompt = await response.json();
+
+        if (response.ok) {
+          promptEl.innerHTML = prompt.prompt;
+        }
+      } catch (error) {
+        console.log('Error getting prompt: ', error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
     
     const [textInput1, setTextInput1] = useState('');
     const [textInput2, setTextInput2] = useState('');
@@ -31,11 +59,12 @@ const handleFormSubmit = async (e) => {
     e.preventDefault();
 };
 
-    return (
-        <div>
-            <div>
-                <h1>The Catylist</h1>
-            </div>
+  return (
+    <div>
+      <div>
+        <h1>The Catylist</h1>
+        <p id="prompt"></p>
+      </div>
             <form id='catylist' onSubmit={handleFormSubmit}>
                 <div>
                     <label htmlFor='Question1'>Who are the main characters?</label>
@@ -89,11 +118,15 @@ const handleFormSubmit = async (e) => {
                 </div>
                     <button type='submit'>Save</button>
                 </form>
-        <div>
-        <button><a href ='/step3' className={currentPage === '/step3' ? 'active' : ''}>Next Step</a></button>
-        </div>
+      <div>
+        <button>
+          <a href="/step3" className={currentPage === '/step3' ? 'active' : ''}>
+            Next Step
+          </a>
+        </button>
+      </div>
     </div>
-    )
+  );
 }
 
 export default Step2;

@@ -3,7 +3,10 @@ const { Schema, model } = require('mongoose');
 // Schema to create Prompt model
 const promptSchema = new Schema(
   {
-    prompt: { type: String, require: true, maxLength: 500 },
+    prompt: { type: String, required: true },
+    catalyst_input: { type: String, required: false },
+    midpoint_input: { type: String, required: false },
+    ending_input: { type: String, required: false },
     email: {
       type: String,
       required: true,
