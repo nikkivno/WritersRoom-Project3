@@ -60,7 +60,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch('/api/users/login', {
+      const response = await fetch('/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
