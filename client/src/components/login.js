@@ -49,7 +49,7 @@ function Login() {
       //   if successful login, change page & set token
       if (response.status === 200) {
         console.log('Success logging in.');
-        localStorage.setItem('jwt', JSON.stringify(data.token));
+        localStorage.setItem('jwt', data.token);
         history.push('/newwork');
       }
     } catch (error) {

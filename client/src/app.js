@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     // Get JWT from local storage & validate it if it exists
-    const jwt = JSON.parse(localStorage.getItem('jwt'));
+    const jwt = localStorage.getItem('jwt');
 
     if (jwt) {
       async function validateToken() {
@@ -54,7 +54,7 @@ function App() {
             path="/writing"
             component={isAuthenticated ? Writing : Login}
           />
-          <Redirect to="/" />
+          {/* <Redirect to="/" /> */}
         </Switch>
         <Footer />
       </div>
