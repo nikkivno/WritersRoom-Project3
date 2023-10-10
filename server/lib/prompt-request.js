@@ -12,7 +12,7 @@ async function requestPrompt(keywords) {
   const response = await openaiClient.chat.completions.create({
     messages: [{ role: 'user', content: request }],
     model: 'gpt-3.5-turbo',
-    max_tokens: 100,
+    max_tokens: 200,
   });
 
   return response.choices[0].message.content;
