@@ -6,6 +6,9 @@ function Step2() {
     
     const [textInput1, setTextInput1] = useState('');
     const [textInput2, setTextInput2] = useState('');
+    const [textInput3, setTextInput3] = useState('');
+    const [textInput4, setTextInput4] = useState('');
+    const [textInput5, setTextInput5] = useState('');
     
 
     const handleInputChange = (e) => {
@@ -15,6 +18,12 @@ function Step2() {
         setTextInput1(value);
     } else if (name === 'textInput2') {
         setTextInput2(value);
+    } else if (name === 'textInput3') {
+        setTextInput3(value);
+    } else if (name === 'textInput4') {
+        setTextInput4(value);
+    } else if (name === 'textInput5') {
+        setTextInput5(value);
     }
 };
 
@@ -29,7 +38,7 @@ const handleFormSubmit = async (e) => {
             </div>
             <form id='catylist' onSubmit={handleFormSubmit}>
                 <div>
-                    <label htmlFor='Question1'>Question Here</label>
+                    <label htmlFor='Question1'>Who are the main characters?</label>
                     <input 
                         value={textInput1}
                         name='Question1'
@@ -39,9 +48,39 @@ const handleFormSubmit = async (e) => {
                     />
                 </div>
                 <div>
-                    <label htmlFor='Question2'>Question Here</label>
+                    <label htmlFor='Question2'>What is the reason the characters are together or seperated?</label>
                     <input 
                          value={textInput2}
+                         name='Question2'
+                         onChange={handleInputChange}
+                         type='text'
+                         required
+                    />
+                </div>
+                <div>
+                    <label htmlFor='Question3'>When is the story taking place?</label>
+                    <input 
+                         value={textInput3}
+                         name='Question2'
+                         onChange={handleInputChange}
+                         type='text'
+                         required
+                    />
+                </div>
+                <div>
+                    <label htmlFor='Question4'>Where is the location of the story?</label>
+                    <input 
+                         value={textInput4}
+                         name='Question2'
+                         onChange={handleInputChange}
+                         type='text'
+                         required
+                    />
+                </div>
+                <div>
+                    <label htmlFor='Question5'>What is the inciting action that propells the characters through the story?</label>
+                    <input 
+                         value={textInput5}
                          name='Question2'
                          onChange={handleInputChange}
                          type='text'
