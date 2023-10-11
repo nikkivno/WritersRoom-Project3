@@ -136,7 +136,6 @@ function Login() {
               id='passwordIcon'
               required
             />
-            {/* <img src={EyeClose} id='eyeicon'/> */}
             <img
               src={showPassword ? EyeOpen : EyeClose}
               id='eyeicon'
