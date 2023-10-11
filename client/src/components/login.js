@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
 import '../styles/login.css';
 
 function Login() {
@@ -24,6 +23,14 @@ function Login() {
       setLastName(value);
     }
   };
+
+ 
+  const handleSuccess = (token) => {
+
+    localStorage.setItem('jwt', token);
+    history.push('/newwork');
+  };
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
@@ -39,23 +46,19 @@ function Login() {
         }),
       });
 
-      const data = await response.json();
-
-      //   alert with error
       if (response.status === 400) {
+        const data = await response.json();
         alert(data.message);
-      }
-
-      //   if successful login, change page & set token
-      if (response.status === 200) {
+      } else if (response.status === 200) {
+        const data = await response.json();
         console.log('Success logging in.');
-        localStorage.setItem('jwt', data.token);
-        history.push('/newwork');
+        handleSuccess(data.token); 
       }
     } catch (error) {
       console.log('Error logging in: ', error);
     }
   };
+
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
 
@@ -73,23 +76,27 @@ function Login() {
         }),
       });
 
-      const data = response.json();
-
-      //   alert user with error
       if (response.status === 400 || response.status === 409) {
+        const data = await response.json();
         alert(data.message);
-      }
-
-      //   if successful, change page
-      if (response.status === 200) {
+      } else if (response.status === 200) {
+        const data = await response.json();
         console.log('Success registering.');
-        localStorage.setItem('jwt', JSON.stringify(data.token));
-        history.push('/newwork');
+        handleSuccess(data.token); 
       }
     } catch (error) {
       console.log('Error registering in: ', error);
     }
   };
+
+ 
+  const token = localStorage.getItem('jwt');
+  if (token) {
+    console.log('Token:', token);
+  } else {
+
+    console.log('Token not found');
+  }
 
   return (
     <div>
@@ -97,6 +104,7 @@ function Login() {
         <div className="login">
           <h1>Login</h1>
           <form id="loginform" onSubmit={handleLoginSubmit}>
+            {/* Input fields for email and password */}
             <input
               value={email}
               name="email"
@@ -119,6 +127,7 @@ function Login() {
         <div className="signup">
           <h1>Sign Up</h1>
           <form id="signupform" onSubmit={handleRegisterSubmit}>
+            {/* Input fields for first name, last name, email, and password */}
             <input
               value={firstName}
               name="firstName"
@@ -158,39 +167,5 @@ function Login() {
     </div>
   );
 }
-
-// function Login() {
-//     return (
-//         <div>
-//             <div className="login">
-//                 <h1>Login</h1>
-//             </div>
-//                 <form id='form' onSubmit={handleFormSubmit}>
-//                     <input
-//                         value={email}
-//                         name='email'
-//                         onChange={handleInputChange}
-//                         type='email'
-//                         placeholder='Email'
-//                         required
-//                     />
-//                     <input
-//                         value={password}
-//                         name='password'
-//                         onChange={handleInputChange}
-//                         type='password'
-//                         placeholder='Password'
-//                         required
-//                     />
-//                     <button type='submit'>Log In</button>
-
-//                 </form>
-//             <div className='signup'>
-//                 <h1>Sign Up</h1>
-//             </div>
-
-//         </div>
-//     )
-// }
 
 export default Login;
