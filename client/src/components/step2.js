@@ -65,8 +65,6 @@ function Step2() {
       action: textInput5,
     });
 
-    console.log(catalystData);
-
     try {
       const response = await fetch(`/api/prompts/${promptId}`, {
         method: 'PUT',
