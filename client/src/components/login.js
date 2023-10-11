@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import EyeClose from '../images/eye-close.png'
+import EyeOpen from '../images/eye-open.png';
 
 import '../styles/login.css';
 
@@ -97,6 +99,17 @@ function Login() {
     }
   };
 
+
+  // password Visibility code
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+
+
   return (
     <div>
       <div className="mainContainer">
@@ -113,14 +126,23 @@ function Login() {
               placeholder="Email"
               required
             />
+            <div className='input-box'>
             <input
               value={password}
               name="password"
               onChange={handleInputChange}
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password"
+              id='passwordIcon'
               required
             />
+            {/* <img src={EyeClose} id='eyeicon'/> */}
+            <img
+              src={showPassword ? EyeOpen : EyeClose}
+              id='eyeicon'
+              onClick={togglePasswordVisibility}
+            />
+            </div>
             <button type="submit">Log In</button>
           </form>
         </div>
@@ -153,14 +175,22 @@ function Login() {
               placeholder="Email"
               required
             />
+            <div className='input-box'>
             <input
               value={password1}
               name="password1"
               onChange={handleInputChange}
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password"
+              id='password1'
               required
             />
+            <img
+              src={showPassword ? EyeOpen : EyeClose}
+              id='eyeicon'
+              onClick={togglePasswordVisibility}
+            />
+            </div>
             <button type="submit">Sign Up</button>
           </form>
         </div>
