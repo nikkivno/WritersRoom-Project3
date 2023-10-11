@@ -67,7 +67,7 @@ async function updatePrompt(req, res) {
         .status(404)
         .json({ message: `No prompt found with id: ${req.params.id}` });
     }
-    res.status(200).json(updatePrompt);
+    res.status(200).json(updatedPrompt);
   } catch (error) {
     console.log(error);
     res.status(500).json('Error updating prompt: ', error);
