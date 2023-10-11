@@ -1,37 +1,42 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import EyeClose from '../images/eye-close.png'
+import EyeClose from '../images/eye-close.png';
 import EyeOpen from '../images/eye-open.png';
-
 import '../styles/login.css';
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [email1, setEmail1] = useState('');
-  const [password, setPassword] = useState('');
-  const [password1, setPassword1] = useState('');
+  const [loginEmail, setLoginEmail] = useState(''); 
+  const [loginPassword, setLoginPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [signUpEmail, setSignUpEmail] = useState(''); 
+  const [signUpPassword, setSignUpPassword] = useState('');
 
   const history = useHistory();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === 'email') {
-      setEmail(value);
-    } else if (name === 'password') {
-      setPassword(value);
+    if (name === 'loginEmail') {
+      setLoginEmail(value);
+    } else if (name === 'loginPassword') {
+      setLoginPassword(value);
     } else if (name === 'firstName') {
       setFirstName(value);
     } else if (name === 'lastName') {
       setLastName(value);
-    }else if (name === 'email1') {
-      setEmail1(value);
-    } else if (name === 'password1') {
-      setPassword1(value);
+    } else if (name === 'signUpEmail') {
+      setSignUpEmail(value);
+    } else if (name === 'signUpPassword') {
+      setSignUpPassword(value);
     }
   };
+
+  const handleSuccess = (token) => {
+    localStorage.setItem('jwt', token);
+    history.push('/newwork');
+  };
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
@@ -42,28 +47,24 @@ function Login() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: email,
-          password: password,
+          email: loginEmail,
+          password: loginPassword,
         }),
       });
 
-      const data = await response.json();
-
-      //   alert with error
       if (response.status === 400) {
+        const data = await response.json();
         alert(data.message);
-      }
-
-      //   if successful login, change page & set token
-      if (response.status === 200) {
+      } else if (response.status === 200) {
+        const data = await response.json();
         console.log('Success logging in.');
-        localStorage.setItem('jwt', data.token);
-        history.push('/newwork');
+        handleSuccess(data.token);
       }
     } catch (error) {
       console.log('Error logging in: ', error);
     }
   };
+
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
 
@@ -76,77 +77,72 @@ function Login() {
         body: JSON.stringify({
           first_name: firstName,
           last_name: lastName,
-          email: email1,
-          password: password1,
+          email: signUpEmail,
+          password: signUpPassword,
         }),
       });
 
-      const data = response.json();
-
-      //   alert user with error
       if (response.status === 400 || response.status === 409) {
+        const data = await response.json();
         alert(data.message);
-      }
-
-      //   if successful, change page
-      if (response.status === 200) {
+      } else if (response.status === 200) {
+        const data = await response.json();
         console.log('Success registering.');
-        localStorage.setItem('jwt', JSON.stringify(data.token));
-        history.push('/newwork');
+        handleSuccess(data.token);
       }
     } catch (error) {
       console.log('Error registering in: ', error);
     }
   };
 
+  const token = localStorage.getItem('jwt');
+  if (token) {
+    console.log('Token:', token);
+  } else {
+    console.log('Token not found');
+  }
 
-  // password Visibility code
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showSignUpPassword, setShowSignUpPassword] = useState();
 
-  const [showPassword, setShowPassword] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const toggleLoginPasswordVisibility = () => {
+    setShowLoginPassword(!showLoginPassword);
   };
 
-
+  const toggleSignUpPasswordVisibility = () => {
+    setShowSignUpPassword(!showSignUpPassword);
+  };
 
   return (
     <div>
       <div className="mainContainer">
-
-        {/* Login Form */}
         <div className="login">
           <h1>Login</h1>
           <form id="loginform" onSubmit={handleLoginSubmit}>
             <input
-              value={email}
-              name="email"
+              value={loginEmail}
+              name="loginEmail"
               onChange={handleInputChange}
               type="email"
               placeholder="Email"
               required
             />
-            <div className='input-box'>
             <input
-              value={password}
-              name="password"
+              value={loginPassword}
+              name="loginPassword"
               onChange={handleInputChange}
-              type={showPassword ? 'text' : 'password'}
+              type={showLoginPassword ? 'text' : 'password'}
               placeholder="Password"
-              id='passwordIcon'
               required
             />
             <img
-              src={showPassword ? EyeOpen : EyeClose}
+              src={showLoginPassword ? EyeOpen : EyeClose}
               id='eyeicon'
-              onClick={togglePasswordVisibility}
+              onClick={toggleLoginPasswordVisibility}
             />
-            </div>
             <button type="submit">Log In</button>
           </form>
         </div>
-
-        {/* Sign Up Form */}
         <div className="signup">
           <h1>Sign Up</h1>
           <form id="signupform" onSubmit={handleRegisterSubmit}>
@@ -167,29 +163,26 @@ function Login() {
               required
             />
             <input
-              value={email1}
-              name="email1"
+              value={signUpEmail}
+              name="signUpEmail"
               onChange={handleInputChange}
               type="email"
               placeholder="Email"
               required
             />
-            <div className='input-box'>
             <input
-              value={password1}
-              name="password1"
+              value={signUpPassword}
+              name="signUpPassword"
               onChange={handleInputChange}
-              type={showPassword ? 'text' : 'password'}
+              type={showSignUpPassword ? 'text' : 'password'}
               placeholder="Password"
-              id='password1'
               required
             />
             <img
-              src={showPassword ? EyeOpen : EyeClose}
+              src={showSignUpPassword ? EyeOpen : EyeClose}
               id='eyeicon'
-              onClick={togglePasswordVisibility}
+              onClick={toggleSignUpPasswordVisibility}
             />
-            </div>
             <button type="submit">Sign Up</button>
           </form>
         </div>
