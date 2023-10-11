@@ -38,6 +38,7 @@ input {
     height: 40px;
     width: 400px;
     font-size: 20px;
+    padding-right: 40px;
 }
 
 button {
@@ -47,3 +48,22 @@ button {
     margin-top: 15px;
 }
 
+.input-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .input-box input {
+    margin-top: 15px;
+    padding-right: 40px;
+  }
+  
+  .input-box img {
+    width: 30px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px; 
+    top: 60%;
+    transform: translateY(-50%);
+  }
