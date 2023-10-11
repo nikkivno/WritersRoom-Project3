@@ -5,7 +5,9 @@ import '../styles/login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
+  const [email1, setEmail1] = useState('');
   const [password, setPassword] = useState('');
+  const [password1, setPassword1] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
@@ -22,6 +24,10 @@ function Login() {
       setFirstName(value);
     } else if (name === 'lastName') {
       setLastName(value);
+    }else if (name === 'email1') {
+      setEmail1(value);
+    } else if (name === 'password1') {
+      setPassword1(value);
     }
   };
   const handleLoginSubmit = async (e) => {
@@ -68,8 +74,8 @@ function Login() {
         body: JSON.stringify({
           first_name: firstName,
           last_name: lastName,
-          email: email,
-          password: password,
+          email: email1,
+          password: password1,
         }),
       });
 
@@ -94,6 +100,8 @@ function Login() {
   return (
     <div>
       <div className="mainContainer">
+
+        {/* Login Form */}
         <div className="login">
           <h1>Login</h1>
           <form id="loginform" onSubmit={handleLoginSubmit}>
@@ -116,6 +124,8 @@ function Login() {
             <button type="submit">Log In</button>
           </form>
         </div>
+
+        {/* Sign Up Form */}
         <div className="signup">
           <h1>Sign Up</h1>
           <form id="signupform" onSubmit={handleRegisterSubmit}>
@@ -136,16 +146,16 @@ function Login() {
               required
             />
             <input
-              value={email}
-              name="email"
+              value={email1}
+              name="email1"
               onChange={handleInputChange}
               type="email"
               placeholder="Email"
               required
             />
             <input
-              value={password}
-              name="password"
+              value={password1}
+              name="password1"
               onChange={handleInputChange}
               type="password"
               placeholder="Password"
@@ -158,39 +168,5 @@ function Login() {
     </div>
   );
 }
-
-// function Login() {
-//     return (
-//         <div>
-//             <div className="login">
-//                 <h1>Login</h1>
-//             </div>
-//                 <form id='form' onSubmit={handleFormSubmit}>
-//                     <input
-//                         value={email}
-//                         name='email'
-//                         onChange={handleInputChange}
-//                         type='email'
-//                         placeholder='Email'
-//                         required
-//                     />
-//                     <input
-//                         value={password}
-//                         name='password'
-//                         onChange={handleInputChange}
-//                         type='password'
-//                         placeholder='Password'
-//                         required
-//                     />
-//                     <button type='submit'>Log In</button>
-
-//                 </form>
-//             <div className='signup'>
-//                 <h1>Sign Up</h1>
-//             </div>
-
-//         </div>
-//     )
-// }
 
 export default Login;
