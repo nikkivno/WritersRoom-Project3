@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import EyeClose from '../images/eye-close.png'
+import EyeOpen from '../images/eye-open.png';
+
 import '../styles/login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
+  const [email1, setEmail1] = useState('');
   const [password, setPassword] = useState('');
+  const [password1, setPassword1] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
@@ -21,16 +26,12 @@ function Login() {
       setFirstName(value);
     } else if (name === 'lastName') {
       setLastName(value);
+    }else if (name === 'email1') {
+      setEmail1(value);
+    } else if (name === 'password1') {
+      setPassword1(value);
     }
   };
-
- 
-  const handleSuccess = (token) => {
-
-    localStorage.setItem('jwt', token);
-    history.push('/newwork');
-  };
-
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
@@ -46,19 +47,23 @@ function Login() {
         }),
       });
 
+      const data = await response.json();
+
+      //   alert with error
       if (response.status === 400) {
-        const data = await response.json();
         alert(data.message);
-      } else if (response.status === 200) {
-        const data = await response.json();
+      }
+
+      //   if successful login, change page & set token
+      if (response.status === 200) {
         console.log('Success logging in.');
-        handleSuccess(data.token); 
+        localStorage.setItem('jwt', data.token);
+        history.push('/newwork');
       }
     } catch (error) {
       console.log('Error logging in: ', error);
     }
   };
-
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
 
@@ -71,40 +76,48 @@ function Login() {
         body: JSON.stringify({
           first_name: firstName,
           last_name: lastName,
-          email: email,
-          password: password,
+          email: email1,
+          password: password1,
         }),
       });
 
+      const data = response.json();
+
+      //   alert user with error
       if (response.status === 400 || response.status === 409) {
-        const data = await response.json();
         alert(data.message);
-      } else if (response.status === 200) {
-        const data = await response.json();
+      }
+
+      //   if successful, change page
+      if (response.status === 200) {
         console.log('Success registering.');
-        handleSuccess(data.token); 
+        localStorage.setItem('jwt', JSON.stringify(data.token));
+        history.push('/newwork');
       }
     } catch (error) {
       console.log('Error registering in: ', error);
     }
   };
 
- 
-  const token = localStorage.getItem('jwt');
-  if (token) {
-    console.log('Token:', token);
-  } else {
 
-    console.log('Token not found');
-  }
+  // password Visibility code
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+
 
   return (
     <div>
       <div className="mainContainer">
+
+        {/* Login Form */}
         <div className="login">
           <h1>Login</h1>
           <form id="loginform" onSubmit={handleLoginSubmit}>
-            {/* Input fields for email and password */}
             <input
               value={email}
               name="email"
@@ -113,21 +126,30 @@ function Login() {
               placeholder="Email"
               required
             />
+            <div className='input-box'>
             <input
               value={password}
               name="password"
               onChange={handleInputChange}
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password"
+              id='passwordIcon'
               required
             />
+            <img
+              src={showPassword ? EyeOpen : EyeClose}
+              id='eyeicon'
+              onClick={togglePasswordVisibility}
+            />
+            </div>
             <button type="submit">Log In</button>
           </form>
         </div>
+
+        {/* Sign Up Form */}
         <div className="signup">
           <h1>Sign Up</h1>
           <form id="signupform" onSubmit={handleRegisterSubmit}>
-            {/* Input fields for first name, last name, email, and password */}
             <input
               value={firstName}
               name="firstName"
@@ -145,21 +167,29 @@ function Login() {
               required
             />
             <input
-              value={email}
-              name="email"
+              value={email1}
+              name="email1"
               onChange={handleInputChange}
               type="email"
               placeholder="Email"
               required
             />
+            <div className='input-box'>
             <input
-              value={password}
-              name="password"
+              value={password1}
+              name="password1"
               onChange={handleInputChange}
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password"
+              id='password1'
               required
             />
+            <img
+              src={showPassword ? EyeOpen : EyeClose}
+              id='eyeicon'
+              onClick={togglePasswordVisibility}
+            />
+            </div>
             <button type="submit">Sign Up</button>
           </form>
         </div>
