@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/step2.css';
 
 function Step2() {
@@ -31,33 +31,60 @@ function Step2() {
     fetchData();
   }, []);
 
-    
-    const [textInput1, setTextInput1] = useState('');
-    const [textInput2, setTextInput2] = useState('');
-    const [textInput3, setTextInput3] = useState('');
-    const [textInput4, setTextInput4] = useState('');
-    const [textInput5, setTextInput5] = useState('');
-    
+  const [textInput1, setTextInput1] = useState('');
+  const [textInput2, setTextInput2] = useState('');
+  const [textInput3, setTextInput3] = useState('');
+  const [textInput4, setTextInput4] = useState('');
+  const [textInput5, setTextInput5] = useState('');
 
-    const handleInputChange = (e) => {
-        const {name, value} = e.target;
-    
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
     if (name === 'textInput1') {
-        setTextInput1(value);
+      setTextInput1(value);
     } else if (name === 'textInput2') {
-        setTextInput2(value);
+      setTextInput2(value);
     } else if (name === 'textInput3') {
-        setTextInput3(value);
+      setTextInput3(value);
     } else if (name === 'textInput4') {
-        setTextInput4(value);
+      setTextInput4(value);
     } else if (name === 'textInput5') {
-        setTextInput5(value);
+      setTextInput5(value);
     }
-};
+  };
 
-const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-};
+
+    const promptId = localStorage.getItem('promptId');
+    const catalystData = JSON.stringify({
+      characters: textInput1,
+      reason: textInput2,
+      time_period: textInput3,
+      setting: textInput4,
+      action: textInput5,
+    });
+
+    try {
+      const response = await fetch(`/api/prompts/${promptId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          catalyst_input: catalystData,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('Input saved successfully');
+      }
+    } catch (error) {
+      console.log('Error saving input: ', error);
+    }
+  };
 
   return (
     <div>
@@ -65,59 +92,64 @@ const handleFormSubmit = async (e) => {
         <h1>The Catylist</h1>
         <p id="prompt"></p>
       </div>
-            <form id='catylist' onSubmit={handleFormSubmit}>
-                <div>
-                    <label htmlFor='Question1'>Who are the main characters?</label>
-                    <input 
-                        value={textInput1}
-                        name='textInput1'
-                        onChange={handleInputChange}
-                        type='text'
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor='Question2'>What is the reason the characters are together or seperated?</label>
-                    <input 
-                         value={textInput2}
-                         name='textInput2'
-                         onChange={handleInputChange}
-                         type='text'
-                         required
-                    />
-                </div>
-                <div>
-                    <label htmlFor='Question3'>When is the story taking place?</label>
-                    <input 
-                         value={textInput3}
-                         name='textInput3'
-                         onChange={handleInputChange}
-                         type='text'
-                         required
-                    />
-                </div>
-                <div>
-                    <label htmlFor='Question4'>Where is the location of the story?</label>
-                    <input 
-                         value={textInput4}
-                         name='textInput4'
-                         onChange={handleInputChange}
-                         type='text'
-                         required
-                    />
-                </div>
-                <div>
-                    <label htmlFor='Question5'>What is the inciting action that propells the characters through the story?</label>
-                    <input 
-                         value={textInput5}
-                         name='textInput5'
-                         onChange={handleInputChange}
-                         type='text'
-                         required
-                    />
-                </div>
-                    <button type='submit'>Save</button>
-                </form>
+      <form id="catylist" onSubmit={handleFormSubmit}>
+        <div>
+          <label htmlFor="Question1">Who are the main characters?</label>
+          <input
+            value={textInput1}
+            name="textInput1"
+            onChange={handleInputChange}
+            type="text"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="Question2">
+            What is the reason the characters are together or seperated?
+          </label>
+          <input
+            value={textInput2}
+            name="textInput2"
+            onChange={handleInputChange}
+            type="text"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="Question3">When is the story taking place?</label>
+          <input
+            value={textInput3}
+            name="textInput3"
+            onChange={handleInputChange}
+            type="text"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="Question4">Where is the location of the story?</label>
+          <input
+            value={textInput4}
+            name="textInput4"
+            onChange={handleInputChange}
+            type="text"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="Question5">
+            What is the inciting action that propells the characters through the
+            story?
+          </label>
+          <input
+            value={textInput5}
+            name="textInput5"
+            onChange={handleInputChange}
+            type="text"
+            required
+          />
+        </div>
+        <button type="submit">Save</button>
+      </form>
       <div>
         <button>
           <a href="/step3" className={currentPage === '/step3' ? 'active' : ''}>
