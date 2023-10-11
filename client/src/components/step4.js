@@ -53,8 +53,8 @@ function Step4() {
                 <div>
                     <label>What is the fallout from the events of the story? (ex. what happens to characters, town, etc)</label>
                     <input 
-                        value={textarea2}
-                        name='textarea2'
+                        value={textarea3}
+                        name='textarea3'
                         onChange={handleInputChange}
                         type='text'
                         required

@@ -5,12 +5,14 @@ import EyeOpen from '../images/eye-open.png';
 import '../styles/login.css';
 
 function Login() {
-  const [loginEmail, setLoginEmail] = useState(''); 
+  const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [signUpEmail, setSignUpEmail] = useState(''); 
+  const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showSignUpPassword, setShowSignUpPassword] = useState(false);
 
   const history = useHistory();
 
@@ -91,26 +93,8 @@ function Login() {
         handleSuccess(data.token);
       }
     } catch (error) {
-      console.log('Error registering in: ', error);
+      console.log('Error registering: ', error);
     }
-  };
-
-  const token = localStorage.getItem('jwt');
-  if (token) {
-    console.log('Token:', token);
-  } else {
-    console.log('Token not found');
-  }
-
-  const [showLoginPassword, setShowLoginPassword] = useState(false);
-  const [showSignUpPassword, setShowSignUpPassword] = useState();
-
-  const toggleLoginPasswordVisibility = () => {
-    setShowLoginPassword(!showLoginPassword);
-  };
-
-  const toggleSignUpPasswordVisibility = () => {
-    setShowSignUpPassword(!showSignUpPassword);
   };
 
   return (
@@ -138,7 +122,7 @@ function Login() {
             <img
               src={showLoginPassword ? EyeOpen : EyeClose}
               id='eyeicon'
-              onClick={toggleLoginPasswordVisibility}
+              onClick={() => setShowLoginPassword(!showLoginPassword)}
             />
             <button type="submit">Log In</button>
           </form>
@@ -181,7 +165,7 @@ function Login() {
             <img
               src={showSignUpPassword ? EyeOpen : EyeClose}
               id='eyeicon'
-              onClick={toggleSignUpPasswordVisibility}
+              onClick={() => setShowSignUpPassword(!showSignUpPassword)}
             />
             <button type="submit">Sign Up</button>
           </form>
