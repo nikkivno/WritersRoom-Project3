@@ -11,6 +11,7 @@ import Step3 from './components/step3';
 import Step4 from './components/step4';
 import Writing from './components/writing';
 import Ongoingwork from './components/ongoingwork';
+import Main from './components/main';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -46,6 +47,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/" exact component={Login} />
+          <Route path='/main' component={Main} />
           <Route path="/about" component={About} />
           <Route path="/newwork" component={isAuthenticated ? Prompt : Login} />
           <Route path="/step2" component={isAuthenticated ? Step2 : Login} />
