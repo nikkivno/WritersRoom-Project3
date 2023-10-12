@@ -129,6 +129,7 @@ function Login() {
             <button type="submit">log in</button>
           </form>
         </div>
+        <div className='vertical-divider'></div>
         <div className="signup">
           <h1>sign up</h1>
           <form id="signupform" onSubmit={handleRegisterSubmit}>
