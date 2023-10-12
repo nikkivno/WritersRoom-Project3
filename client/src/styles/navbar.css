@@ -33,6 +33,12 @@ nav ul {
     font-size: large;
 }
 
+nav h1 a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 nav li a {
     display: inline-block;
     color: whitesmoke; 
