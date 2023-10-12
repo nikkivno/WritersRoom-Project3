@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
+import '../styles/writing.css';
 
 export function Writing() {
   const editorRef = useRef(null);
@@ -11,14 +12,15 @@ export function Writing() {
   return (
     <>
     <div>
-        <h1>Writing</h1>
+        <h1 className='writing'>Writing</h1>
     </div>
       <Editor
         apiKey='1yd2u78it8w81i51bwc4b01pd50szutiv7ut912vsj5d0lq7'
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue="<p>This is the initial content of the editor.</p>"
+        initialValue="<p>Start your story here!</p>"
         init={{
-          height: 500,
+          height: 700,
+          width: 1400,
           menubar: false,
           browser_spellcheck: true,
           
@@ -35,7 +37,21 @@ export function Writing() {
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
-      <button onClick={log}>Log editor content</button>
+      <button onClick={log} className='submit'>log editor content</button>
+      <div>
+      <div className='card' id='prompt'>
+        <p>Prompt</p>
+      </div>
+      <div className='card' id='catylist'>
+        <p>The Catylist</p>
+      </div>
+      <div className='card' id='midpoint'>
+        <p>The Midpoint</p>
+      </div>
+      <div className='card' id='conclusion'>
+        <p>The Conclusion</p>
+      </div>
+    </div>
     </>
   );
 }
