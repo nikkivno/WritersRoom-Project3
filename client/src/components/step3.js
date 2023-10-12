@@ -57,7 +57,7 @@ function Step3() {
 
   return (
     <div>
-      <div>
+      <div className='step3Title'>
         <h1>The Midpoint</h1>
       </div>
       <form id="midpoint" onSubmit={handleFormSubmit}>
@@ -113,7 +113,7 @@ function Step3() {
         <button type="submit">save</button>
       </form>
       <div className='nextstep'>
-        <button>
+        <button className='tostep4'>
           <a href="/step4" className={currentPage === '/step4' ? 'active' : ''}>
             next step
           </a>
