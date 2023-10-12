@@ -99,7 +99,7 @@ function Prompt() {
       <div className='newprompt'>
         <p id="generatedPrompt"></p>
       </div>
-      <div>
+      <div className='nextstep'>
         <button onClick={handleNextStep}>
           <a href="/step2" className={currentPage === '/step2' ? 'active' : ''}>
             next step

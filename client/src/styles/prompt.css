@@ -36,4 +36,19 @@ button:active {
     align-items: center;
     justify-content: center;
   }
-  
+
+  .newprompt {
+    margin-left: 100px;
+    margin-right:100px;
+  }
+
+  .nextstep {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+  }
+
+ .nextstep button a {
+    text-decoration: none;
+ }
