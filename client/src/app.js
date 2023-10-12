@@ -46,8 +46,8 @@ function App() {
       <div>
         <Navbar />
         <Switch>
-          <Route path="/" exact component={Login} />
-          <Route path='/main' component={Main} />
+          <Route path='/' exact component={Main} />
+          <Route path="/login" component={Login} />
           <Route path="/about" component={About} />
           <Route path="/newwork" component={isAuthenticated ? Prompt : Login} />
           <Route path="/step2" component={isAuthenticated ? Step2 : Login} />
