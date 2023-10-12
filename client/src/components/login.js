@@ -36,6 +36,7 @@ function Login() {
 
   const handleSuccess = (token) => {
     localStorage.setItem('jwt', token);
+    console.log('Redirecting to /newwork');
     history.push('/newwork');
   };
 
