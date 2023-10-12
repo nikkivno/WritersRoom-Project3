@@ -90,10 +90,10 @@ function Step4() {
             required
           />
         </div>
-        <button type="submit">Save</button>
+        <button type="submit">save</button>
       </form>
-      <div>
-        <button>
+      <div className='nextstep'>
+        <button className='getwriting'>
           <a
             href="/writing"
             className={currentPage === '/writing' ? 'active' : ''}

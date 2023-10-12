@@ -110,12 +110,12 @@ function Step3() {
             required
           />
         </div>
-        <button type="submit">Save</button>
+        <button type="submit">save</button>
       </form>
-      <div>
+      <div className='nextstep'>
         <button>
           <a href="/step4" className={currentPage === '/step4' ? 'active' : ''}>
-            Next Step
+            next step
           </a>
         </button>
       </div>

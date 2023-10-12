@@ -89,7 +89,7 @@ function Step2() {
   return (
     <div>
       <div>
-        <h1>The Catylist</h1>
+        <h1>The catylist</h1>
         <p id="prompt"></p>
       </div>
       <form id="catylist" onSubmit={handleFormSubmit}>
@@ -148,14 +148,16 @@ function Step2() {
             required
           />
         </div>
-        <button type="submit">Save</button>
+        <button type="submit">save</button>
       </form>
       <div>
+        <div className='nextstep'>
         <button>
           <a href="/step3" className={currentPage === '/step3' ? 'active' : ''}>
-            Next Step
+            next step
           </a>
         </button>
+        </div>
       </div>
     </div>
   );
