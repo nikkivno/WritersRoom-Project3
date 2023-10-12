@@ -88,7 +88,7 @@ function Prompt() {
         />
         <button>prompt Me</button>
       </form>
-      <div>
+      <div className='newprompt'>
         <p id="generatedPrompt"></p>
       </div>
       <div>

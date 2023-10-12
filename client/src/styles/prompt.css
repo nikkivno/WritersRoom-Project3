@@ -20,3 +20,7 @@ textarea {
     font-size: 20px;
 }
 
+button:active {
+    background-color: aqua;
+}
+
