@@ -1,15 +1,16 @@
 .mainblock {
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100vh;
 }
 
-.header {
+.mainheader {
     display: flex;  
     margin-top: 150px;
 }
 
-.text-container {
+.main-text-container {
     display: inline-block;
     text-align: center;
   }

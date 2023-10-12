@@ -4,8 +4,8 @@ import '../styles/main.css';
 function Main() {
     return (
         <div className='mainblock'>
-            <div className='header'>
-                <div className='text-container'>
+            <div className='mainheader'>
+                <div className='main-text-container'>
                     <h1 className='typewriter'>Writer's Room</h1>
                 </div>
             </div>
