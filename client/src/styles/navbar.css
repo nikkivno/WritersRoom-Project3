@@ -1,5 +1,5 @@
 html, body {
-    background-color: black;
+    background-color: #915F6D;
     min-height: 100vh;
     margin: 0;
 }
@@ -8,6 +8,7 @@ nav {
     display: flex;
     background: black;
     width: 100%;
+    height: 100px;
     justify-content: flex-end;
 }
 
@@ -15,8 +16,9 @@ nav {
     color: white;
     width: 100%;
     padding-left: 20px;
-    font-family: 'Italiana', serif;
+    font-family: 'Major Mono Display', monospace;  
     font-size: 175%;
+    
 }
 
 nav ul {
@@ -31,10 +33,14 @@ nav ul {
 nav li a {
     display: inline-block;
     color: whitesmoke; 
-    font-family: 'Italiana', serif;  
+    font-family: 'Major Mono Display', monospace;  
     font-size: larger;
-    margin: 10px;
+    margin: 5px;
     color: white;
     text-decoration: none;
 }
 
+nav li a:hover {
+    color: #915F6D;
+    text-decoration: overline #915F6D;
+}

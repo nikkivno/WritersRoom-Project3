@@ -130,7 +130,7 @@ function Login() {
           </form>
         </div>
         <div className="signup">
-          <h1>Sign Up</h1>
+          <h1>sign up</h1>
           <form id="signupform" onSubmit={handleRegisterSubmit}>
             <input
               value={firstName}
