@@ -56,6 +56,9 @@ export function Writing() {
       </div>
       <div className="full-container">
         <div className="texteditor">
+        <div className='userTitleContainer'>
+          <input className='userTitle' placeholder='Story Title Here'/>
+        </div>
           <Editor
             apiKey="1yd2u78it8w81i51bwc4b01pd50szutiv7ut912vsj5d0lq7"
             onInit={(evt, editor) => (editorRef.current = editor)}
