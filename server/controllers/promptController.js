@@ -45,7 +45,7 @@ async function getPromptById(req, res) {
     if (!prompt) {
       return res
         .status(404)
-        .json({ message: `No prompt found with id: ${res.params.id}` });
+        .json({ message: `No prompt found with id: ${req.params.id}` });
     }
     res.status(200).json(prompt);
   } catch (error) {
