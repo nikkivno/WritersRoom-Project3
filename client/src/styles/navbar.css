@@ -22,7 +22,7 @@ nav {
 nav ul {
     display: flex;
     justify-content: space-between;
-    width: 400px;
+    width: 100%;
     margin-right: 5%;
     align-items: center;
     font-size: large;
@@ -33,4 +33,5 @@ nav li {
     color: whitesmoke; 
     font-family: 'Italiana', serif;  
     font-size: larger;
+    margin: 10px;
 }
