@@ -10,6 +10,7 @@ import Step2 from './components/step2.js';
 import Step3 from './components/step3';
 import Step4 from './components/step4';
 import Writing from './components/writing';
+import Ongoingwork from './components/ongoingwork';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -50,11 +51,8 @@ function App() {
           <Route path="/step2" component={isAuthenticated ? Step2 : Login} />
           <Route path="/step3" component={isAuthenticated ? Step3 : Login} />
           <Route path="/step4" component={isAuthenticated ? Step4 : Login} />
-          <Route
-            path="/writing"
-            component={isAuthenticated ? Writing : Login}
-          />
-          {/* <Redirect to="/" /> */}
+          <Route path="/writing" component={isAuthenticated ? Writing : Login} />
+          <Route path='/ongoingwork' component={isAuthenticated ? Ongoingwork : Login} />
         </Switch>
         <Footer />
       </div>

@@ -23,7 +23,7 @@ function Navbar() {
                 <li><a href='/' className={currentPage === '/' ? 'active' : ''}>Login/Sign Up</a></li>
                 <li><a href='/about' className={currentPage === '/about' ? 'active' : ''}>About</a></li>
                 <li><a href='/newwork' className={currentPage === '/newwork' ? 'active' :''}>New Work</a></li>
-                <li>Ongoing Work</li>
+                <li><a href='/ongoingwork' classname={currentPage === '/ongoingwork' ? 'active' : ''}>Ongoing Work</a></li>
                 <li onClick={logOut}><a href='/' className={currentPage === '/' ? 'active' : ''}>Logout</a></li>
             </ul>
         </nav>
