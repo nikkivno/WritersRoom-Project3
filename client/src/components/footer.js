@@ -5,7 +5,7 @@ import '../styles/footer.css';
 function Footer() {
     return (
         <div className='copyright'>
-        <h4>Copyright 2023</h4>
+        <h4>copyright 2023</h4>
         </div>
     )
 }

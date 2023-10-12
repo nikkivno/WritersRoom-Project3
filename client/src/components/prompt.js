@@ -71,7 +71,7 @@ function Prompt() {
   return (
     <div>
       <div className="step1">
-        <h1>Prompt</h1>
+        <h1>prompt</h1>
         <p>
           In the area below, put in key words related to the kind of novel you'd
           like to write (ex. genres, setting, time periods)
@@ -86,7 +86,7 @@ function Prompt() {
           placeholder=""
           required
         />
-        <button>Prompt Me</button>
+        <button>prompt Me</button>
       </form>
       <div>
         <p id="generatedPrompt"></p>
@@ -94,7 +94,7 @@ function Prompt() {
       <div>
         <button onClick={handleNextStep}>
           <a href="/step2" className={currentPage === '/step2' ? 'active' : ''}>
-            Next Step
+            next step
           </a>
         </button>
       </div>

@@ -111,6 +111,7 @@ function Login() {
               placeholder="Email"
               required
             />
+            <div className='input-box'>
             <input
               value={loginPassword}
               name="loginPassword"
@@ -124,11 +125,12 @@ function Login() {
               id='eyeicon'
               onClick={() => setShowLoginPassword(!showLoginPassword)}
             />
-            <button type="submit">Log In</button>
+            </div>
+            <button type="submit">log in</button>
           </form>
         </div>
         <div className="signup">
-          <h1>Sign Up</h1>
+          <h1>sign up</h1>
           <form id="signupform" onSubmit={handleRegisterSubmit}>
             <input
               value={firstName}
@@ -154,6 +156,7 @@ function Login() {
               placeholder="Email"
               required
             />
+            <div className='input-box'>
             <input
               value={signUpPassword}
               name="signUpPassword"
@@ -167,7 +170,8 @@ function Login() {
               id='eyeicon'
               onClick={() => setShowSignUpPassword(!showSignUpPassword)}
             />
-            <button type="submit">Sign Up</button>
+            </div>
+            <button type="submit">sign up</button>
           </form>
         </div>
       </div>
