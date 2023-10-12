@@ -17,7 +17,7 @@
 
 .typewriter {
     overflow: hidden;
-    border-right: .10em solid orange;
+    border-right: .1em solid orange;
     white-space: nowrap;
     font-size: 90px;
     animation: typing 4s steps(13, end), blink-caret .75s step-end infinite;
