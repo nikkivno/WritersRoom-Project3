@@ -1,10 +1,12 @@
-// used for the first steps of new work. UI for the prompt generator
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/prompt.css';
 import decode from 'jwt-decode';
+import PropagateLoader from 'react-spinners/PropagateLoader'
 
 function Prompt() {
+  const [loading, setLoading] = useState(false);
+  const [promptText, setPromptText] = useState('');
+
   const currentPage = window.location.pathname;
 
   const [textarea, setTextarea] = useState('');
@@ -18,6 +20,7 @@ function Prompt() {
   };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const promptEl = document.getElementById('generatedPrompt');
 
     try {
@@ -32,9 +35,12 @@ function Prompt() {
       const data = await response.json();
 
       console.log(data);
+      setPromptText(data);
       promptEl.innerHTML = data;
     } catch (error) {
       console.log('Error requesting a prompt: ', error);
+    }finally {
+      setLoading(false);
     }
   };
   const handleNextStep = async (e) => {
@@ -86,7 +92,9 @@ function Prompt() {
           placeholder=""
           required
         />
-        <button>prompt Me</button>
+        <button onClick={() => setLoading(!loading)}>prompt Me</button>
+        {loading && <div className='overlay'><PropagateLoader color='#000000' loading={loading} /></div>}
+        
       </form>
       <div className='newprompt'>
         <p id="generatedPrompt"></p>
