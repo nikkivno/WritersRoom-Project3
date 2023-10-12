@@ -111,6 +111,7 @@ function Login() {
               placeholder="Email"
               required
             />
+            <div className='input-box'>
             <input
               value={loginPassword}
               name="loginPassword"
@@ -124,6 +125,7 @@ function Login() {
               id='eyeicon'
               onClick={() => setShowLoginPassword(!showLoginPassword)}
             />
+            </div>
             <button type="submit">Log In</button>
           </form>
         </div>
@@ -154,6 +156,7 @@ function Login() {
               placeholder="Email"
               required
             />
+            <div className='input-box'>
             <input
               value={signUpPassword}
               name="signUpPassword"
@@ -167,6 +170,7 @@ function Login() {
               id='eyeicon'
               onClick={() => setShowSignUpPassword(!showSignUpPassword)}
             />
+            </div>
             <button type="submit">Sign Up</button>
           </form>
         </div>
