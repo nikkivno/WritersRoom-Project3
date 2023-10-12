@@ -17,10 +17,10 @@ function Navbar() {
     return (
         <nav>
             <div className="title">
-                <h1><a href='/main' className={currentPage === '/main' ? 'active' : ''}>Writer's Room</a></h1>
+                <h1><a href='/' className={currentPage === '/' ? 'active' : ''}>Writer's Room</a></h1>
             </div>
             <ul>
-                <li><a href='/' className={currentPage === '/' ? 'active' : ''}>login/sign up</a></li>
+                <li><a href='/login' className={currentPage === '/login' ? 'active' : ''}>login/sign up</a></li>
                 <li><a href='/about' className={currentPage === '/about' ? 'active' : ''}>About</a></li>
                 <li><a href='/newwork' className={currentPage === '/newwork' ? 'active' :''}>new Work</a></li>
                 <li><a href='/ongoingwork' classname={currentPage === '/ongoingwork' ? 'active' : ''}>ongoing Work</a></li>
