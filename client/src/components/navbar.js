@@ -17,7 +17,7 @@ function Navbar() {
     return (
         <nav>
             <div className="title">
-                <h1>Writer's Room</h1>
+                <h1><a href='/main' className={currentPage === '/main' ? 'active' : ''}>Writer's Room</a></h1>
             </div>
             <ul>
                 <li><a href='/' className={currentPage === '/' ? 'active' : ''}>login/sign up</a></li>
