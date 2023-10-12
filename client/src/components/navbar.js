@@ -20,11 +20,11 @@ function Navbar() {
                 <h1>Writer's Room</h1>
             </div>
             <ul>
-                <li><a href='/' className={currentPage === '/' ? 'active' : ''}>Login/sign up</a></li>
+                <li><a href='/' className={currentPage === '/' ? 'active' : ''}>login/sign up</a></li>
                 <li><a href='/about' className={currentPage === '/about' ? 'active' : ''}>About</a></li>
                 <li><a href='/newwork' className={currentPage === '/newwork' ? 'active' :''}>new Work</a></li>
                 <li><a href='/ongoingwork' classname={currentPage === '/ongoingwork' ? 'active' : ''}>ongoing Work</a></li>
-                <li onClick={logOut}><a href='/' className={currentPage === '/' ? 'active' : ''}>Logout</a></li>
+                <li onClick={logOut}><a href='/' className={currentPage === '/' ? 'active' : ''}>logout</a></li>
             </ul>
         </nav>
     );

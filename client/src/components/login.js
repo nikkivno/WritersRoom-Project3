@@ -126,7 +126,7 @@ function Login() {
               onClick={() => setShowLoginPassword(!showLoginPassword)}
             />
             </div>
-            <button type="submit">Log In</button>
+            <button type="submit">log in</button>
           </form>
         </div>
         <div className="signup">
@@ -171,7 +171,7 @@ function Login() {
               onClick={() => setShowSignUpPassword(!showSignUpPassword)}
             />
             </div>
-            <button type="submit">Sign Up</button>
+            <button type="submit">sign up</button>
           </form>
         </div>
       </div>

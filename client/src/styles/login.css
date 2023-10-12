@@ -46,6 +46,11 @@ button {
     border: black;
     border-radius: 7px;
     margin-top: 15px;
+    height: 30px;
+    width: 120px;
+    font-size: 15px;
+    font-family: 'Major Mono Display', monospace;  
+    cursor: pointer;
 }
 
 .input-box {

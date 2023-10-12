@@ -7,7 +7,7 @@ function Ongoingwork() {
     return(
         <div>
             <div>
-                <h1>Ongoing Work</h1>
+                <h1>ongoing Work</h1>
             </div>
         </div>
     );
