@@ -32,7 +32,7 @@
     50% { border-color: orange; }
   }
 
-  p {
+  .subtitle {
     color: white;
     text-align: center;
     animation: fade-in 4s forwards; /* Add a fade-in animation */

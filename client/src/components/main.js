@@ -10,7 +10,7 @@ function Main() {
                 </div>
             </div>
             <div>
-                <p>Let us help you write your first novel.</p>
+                <p className='subtitle'>Let us help you write your first novel.</p>
             </div>
         </div>
     )
