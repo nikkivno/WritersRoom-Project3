@@ -1,0 +1,53 @@
+.mainblock {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    display: flex;  
+    margin-top: 150px;
+}
+
+.text-container {
+    display: inline-block;
+    text-align: center;
+  }
+
+.typewriter {
+    overflow: hidden;
+    border-right: .10em solid orange;
+    white-space: nowrap;
+    font-size: 90px;
+    animation: typing 4s steps(13, end), blink-caret .75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: orange; }
+  }
+
+  p {
+    color: white;
+    text-align: center;
+    animation: fade-in 4s forwards; /* Add a fade-in animation */
+    opacity: 0; /* Initially make the p element invisible */
+    animation-delay: 4s;
+    font-family: 'Spline Sans Mono', monospace;
+}
+
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+
+
+
