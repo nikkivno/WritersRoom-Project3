@@ -1,3 +1,7 @@
+.full-container {
+    display: flex;
+}
+
 .writing {
     text-align: center;
     font-size: 50px;
@@ -5,4 +9,25 @@
 
 .submit {
     width: 300px;
+}
+
+.texteditor {
+    margin-left: 30px;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    border: 1px solid black;
+    width: 300px;
+    height: 140px;
+    margin: 20px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 7px;
+    margin-left: 40px;
+
 }

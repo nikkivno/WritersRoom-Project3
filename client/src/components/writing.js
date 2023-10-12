@@ -14,13 +14,15 @@ export function Writing() {
     <div>
         <h1 className='writing'>Writing</h1>
     </div>
+    <div className='full-container'>
+      <div className='texteditor'>
       <Editor
         apiKey='1yd2u78it8w81i51bwc4b01pd50szutiv7ut912vsj5d0lq7'
         onInit={(evt, editor) => editorRef.current = editor}
         initialValue="<p>Start your story here!</p>"
         init={{
           height: 700,
-          width: 1400,
+          width: 1200,
           menubar: false,
           browser_spellcheck: true,
           
@@ -38,7 +40,8 @@ export function Writing() {
         }}
       />
       <button onClick={log} className='submit'>log editor content</button>
-      <div>
+      </div>
+      <div className='card-container'>
       <div className='card' id='prompt'>
         <p>Prompt</p>
       </div>
@@ -51,6 +54,7 @@ export function Writing() {
       <div className='card' id='conclusion'>
         <p>The Conclusion</p>
       </div>
+    </div>
     </div>
     </>
   );
