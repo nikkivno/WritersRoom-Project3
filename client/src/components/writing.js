@@ -16,6 +16,8 @@ export function Writing() {
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
 
+      const promptId = localStorage.getItem("promptId");
+      const novelId = localStorage.getItem("novelId");
       const token = localStorage.getItem("jwt");
       const userEmail = decode(token).email;
 
@@ -27,15 +29,17 @@ export function Writing() {
           email: userEmail,
           prompt_id: promptId,
         };
-
-        if (promptId) {
+        
+        if (novelId) {
+          reqUrl = `/api/novels/${novelId}`;
+          method = "PUT";
+        } else if (promptId) {
           reqUrl = `/api/novels/${promptId}`;
           method = "PUT";
         } else {
           reqUrl = `/api/novels`;
           method = "POST";
         }
-
         const response = await fetch(reqUrl, {
           method: method,
           headers: {
@@ -107,6 +111,10 @@ export function Writing() {
       </div>
       <div className="full-container">
         <div className="texteditor">
+        <div className="userTitleContainer">
+            <input className="userTitle" placeholder="Story Title Here" />
+          </div>
+         
           <Editor
             apiKey="1yd2u78it8w81i51bwc4b01pd50szutiv7ut912vsj5d0lq7"
             onInit={(evt, editor) => (editorRef.current = editor)}
