@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import '../styles/prompt.css';
 import decode from 'jwt-decode';
 import PropagateLoader from 'react-spinners/PropagateLoader'
@@ -93,7 +94,7 @@ function Prompt() {
           required
         />
         <button onClick={() => setLoading(!loading)}>prompt Me</button>
-        {loading && <div className='overlay'><PropagateLoader color='#000000' loading={loading} /></div>}
+        {loading && <div className='overlay'><PropagateLoader color='#915F6D' loading={loading} /></div>}
         
       </form>
       <div className='newprompt'>
