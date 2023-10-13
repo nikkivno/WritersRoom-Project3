@@ -56,6 +56,9 @@ function Step4() {
       <div className='step4Title'>
         <h1>The climactic ending</h1>
       </div>
+      <div className='promptarea'>
+        <p id="prompt"></p>
+      </div>
       <form id="conclusion" onSubmit={handleFormSubmit}>
         <div>
           <label>What plot moments lead up to the climax?</label>

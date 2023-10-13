@@ -60,6 +60,9 @@ function Step3() {
       <div className='step3Title'>
         <h1>The Midpoint</h1>
       </div>
+      <div className='promptarea'>
+        <p id="prompt"></p>
+      </div>
       <form id="midpoint" onSubmit={handleFormSubmit}>
         <div>
           <label htmlFor="q1">
