@@ -40,6 +40,7 @@ function Login() {
     localStorage.setItem('jwt', token);
     localStorage.setItem('user_id', userId);
     navigate("/newwork");
+
   };
 
   const handleLoginSubmit = async (e) => {
