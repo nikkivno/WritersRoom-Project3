@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 
 import '../styles/prompt.css';
 import decode from 'jwt-decode';
@@ -102,9 +103,9 @@ function Prompt() {
       </div>
       <div className='nextstep'>
         <button onClick={handleNextStep}>
-          <a href="/step2" className={currentPage === '/step2' ? 'active' : ''}>
+          <Link to="/step2" className={currentPage === '/step2' ? 'active' : ''}>
             next step
-          </a>
+          </Link>
         </button>
       </div>
     </div>

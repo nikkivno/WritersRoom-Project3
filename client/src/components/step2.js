@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import '../styles/step2.css';
 
 function Step2() {
@@ -155,9 +156,9 @@ function Step2() {
       <div>
         <div className='nextstep'>
         <button>
-          <a href="/step3" className={currentPage === '/step3' ? 'active' : ''}>
+          <Link to="/step3" className={currentPage === '/step3' ? 'active' : ''}>
             next step
-          </a>
+          </Link>
         </button>
         </div>
       </div>

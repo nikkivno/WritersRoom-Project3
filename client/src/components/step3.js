@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
 import '../styles/step3.css';
 
 function Step3() {
@@ -117,9 +118,9 @@ function Step3() {
       </form>
       <div className='nextstep'>
         <button className='tostep4'>
-          <a href="/step4" className={currentPage === '/step4' ? 'active' : ''}>
+          <Link to="/step4" className={currentPage === '/step4' ? 'active' : ''}>
             next step
-          </a>
+          </Link>
         </button>
       </div>
     </div>

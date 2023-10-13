@@ -7,11 +7,10 @@ function Navbar() {
     const navigate = useNavigate();
 
     let user = JSON.parse(localStorage.getItem('user'));
-    console.warn(user);
 
     function logOut() {
         localStorage.clear();
-        navigate('/')
+        navigate('/');
     };
 
     return (
@@ -24,9 +23,9 @@ function Navbar() {
                 <li><Link to='/login' className={currentPage === '/login' ? 'active' : ''}>login/sign up</Link></li>
                 <li><Link to='/about' className={currentPage === '/about' ? 'active' : ''}>About</Link></li>
                 <li><Link to='/newwork' className={currentPage === '/newwork' ? 'active' :''}>new Work</Link></li>
-                <li><Link to='/ongoingwork' classname={currentPage === '/ongoingwork' ? 'active' : ''}>ongoing Work</Link></li>
+                <li><Link to='/ongoingwork' className={currentPage === '/ongoingwork' ? 'active' : ''}>ongoing Work</Link></li>
                 <li onClick={logOut}><Link to='/' className={currentPage === '/' ? 'active' : ''}>logout</Link></li>
-
+            
             </ul>
         </nav>
     );
