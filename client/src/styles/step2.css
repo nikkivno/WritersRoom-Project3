@@ -2,3 +2,15 @@ label {
     color: white;
     margin-right: 10px;
 }
+
+.step2Title {
+    text-align: center;
+}
+
+.step2Title h1 {
+    font-size: 400%;
+}
+
+.promptarea {
+    margin: 40px 100px 80px 100px;
+}

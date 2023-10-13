@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import EyeClose from '../images/eye-close.png';
 import EyeOpen from '../images/eye-open.png';
 import '../styles/login.css';
@@ -14,7 +14,9 @@ function Login() {
   const [showLoginPassword, setShowLoginPassword] = useState(false);
   const [showSignUpPassword, setShowSignUpPassword] = useState(false);
 
-  const history = useHistory();
+  const navigate = useNavigate();
+
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,10 +36,11 @@ function Login() {
     }
   };
 
-  const handleSuccess = (token) => {
+  const handleSuccess = (token, userId) => {
     localStorage.setItem('jwt', token);
-    console.log('Redirecting to /newwork');
-    history.push('/newwork');
+    localStorage.setItem('user_id', userId);
+    navigate("/newwork");
+
   };
 
   const handleLoginSubmit = async (e) => {
@@ -60,8 +63,9 @@ function Login() {
         alert(data.message);
       } else if (response.status === 200) {
         const data = await response.json();
+        console.log(data);
         console.log('Success logging in.');
-        handleSuccess(data.token);
+        handleSuccess(data.token,data._id);
       }
     } catch (error) {
       console.log('Error logging in: ', error);
@@ -90,8 +94,9 @@ function Login() {
         alert(data.message);
       } else if (response.status === 200) {
         const data = await response.json();
+        console.log(data)
         console.log('Success registering.');
-        handleSuccess(data.token);
+        handleSuccess(data.token,data._id);
       }
     } catch (error) {
       console.log('Error registering: ', error);

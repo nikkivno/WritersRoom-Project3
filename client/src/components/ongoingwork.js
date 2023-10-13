@@ -1,7 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../styles/ongoingwork.css';
 
 function Ongoingwork() {
+
+    useEffect(() => {
+        let userId = localStorage.getItem('user_id');
+        fetch(`/api/users/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+    })
+
     return(
         <div>
             <div className='work-header'>

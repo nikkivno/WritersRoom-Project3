@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
-import { Editor } from '@tinymce/tinymce-react';
-import '../styles/writing.css';
-import decode from 'jwt-decode';
+import React, { useRef } from "react";
+import { Editor } from "@tinymce/tinymce-react";
+import "../styles/writing.css";
+import decode from "jwt-decode";
 
 export function Writing() {
   const editorRef = useRef(null);
@@ -9,9 +9,9 @@ export function Writing() {
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
 
-      const promptId = localStorage.getItem('promptId');
-      const novelId = localStorage.getItem('novelId');
-      const token = localStorage.getItem('jwt');
+      const promptId = localStorage.getItem("promptId");
+      const novelId = localStorage.getItem("novelId");
+      const token = localStorage.getItem("jwt");
       const userEmail = decode(token).email;
 
       // save content
@@ -27,25 +27,25 @@ export function Writing() {
         // if novel already exists, update it. Else, create it
         if (novelId) {
           reqUrl = `/api/novels/${novelId}`;
-          method = 'PUT';
+          method = "PUT";
         } else {
           reqUrl = `/api/novels`;
-          method = 'POST';
+          method = "POST";
         }
 
         const response = await fetch(reqUrl, {
           method: method,
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(body),
         });
 
         if (response.ok) {
-          alert('Content saved successfully');
+          alert("Content saved successfully");
         }
       } catch (error) {
-        console.log('Error saving content: ', error);
+        console.log("Error saving content: ", error);
       }
     }
   };
@@ -56,9 +56,9 @@ export function Writing() {
       </div>
       <div className="full-container">
         <div className="texteditor">
-        <div className='userTitleContainer'>
-          <input className='userTitle' placeholder='Story Title Here'/>
-        </div>
+          <div className="userTitleContainer">
+            <input className="userTitle" placeholder="Story Title Here" />
+          </div>
           <Editor
             apiKey="1yd2u78it8w81i51bwc4b01pd50szutiv7ut912vsj5d0lq7"
             onInit={(evt, editor) => (editorRef.current = editor)}
@@ -70,37 +70,37 @@ export function Writing() {
               browser_spellcheck: true,
 
               plugins: [
-                'advlist',
-                'autolink',
-                'lists',
-                'link',
-                'image',
-                'charmap',
-                'preview',
-                'anchor',
-                'searchreplace',
-                'visualblocks',
-                'code',
-                'fullscreen',
-                'insertdatetime',
-                'media',
-                'table',
-                'code',
-                'help',
-                'wordcount',
+                "advlist",
+                "autolink",
+                "lists",
+                "link",
+                "image",
+                "charmap",
+                "preview",
+                "anchor",
+                "searchreplace",
+                "visualblocks",
+                "code",
+                "fullscreen",
+                "insertdatetime",
+                "media",
+                "table",
+                "code",
+                "help",
+                "wordcount",
               ],
               toolbar:
-                'undo redo | blocks | ' +
-                'bold italic forecolor | alignleft aligncenter ' +
-                'alignright alignjustify | bullist numlist outdent indent | ' +
-                'removeformat | help',
+                "undo redo | blocks | " +
+                "bold italic forecolor | alignleft aligncenter " +
+                "alignright alignjustify | bullist numlist outdent indent | " +
+                "removeformat | help",
 
               content_style:
-                'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
             }}
           />
           <button onClick={log} className="submit">
-            log editor content
+            save
           </button>
         </div>
         <div className="card-container">

@@ -88,8 +88,10 @@ function Step2() {
 
   return (
     <div>
-      <div>
+      <div className='step2Title'>
         <h1>The catylist</h1>
+      </div>
+      <div className='promptarea'>
         <p id="prompt"></p>
       </div>
       <form id="catylist" onSubmit={handleFormSubmit}>

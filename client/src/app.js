@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Redirect } from 'react-router-dom';
 
 import Navbar from './components/navbar';
 import Footer from './components/footer';
@@ -46,17 +46,17 @@ function App() {
     <BrowserRouter>
       <div>
         <Navbar />
-        <Switch>
-          <Route path='/' exact component={Main} />
-          <Route path="/login" component={Login} />
-          <Route path="/about" component={About} />
-          <Route path="/newwork" component={isAuthenticated ? Prompt : Login} />
-          <Route path="/step2" component={isAuthenticated ? Step2 : Login} />
-          <Route path="/step3" component={isAuthenticated ? Step3 : Login} />
-          <Route path="/step4" component={isAuthenticated ? Step4 : Login} />
-          <Route path="/writing" component={isAuthenticated ? Writing : Login} />
-          <Route path='/ongoingwork' component={isAuthenticated ? Ongoingwork : Login} />
-        </Switch>
+        <Routes>
+          <Route path='/' exact element={<Main/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/about" element={<About/>} />
+          <Route path="/newwork" element={isAuthenticated ? <Prompt/> : <Login/>} />
+          <Route path="/step2" element={isAuthenticated ? <Step2/> : <Login/>} />
+          <Route path="/step3" element={isAuthenticated ? <Step3/> : <Login/>} />
+          <Route path="/step4" element={isAuthenticated ? <Step4/> : <Login/>} />
+          <Route path="/writing" element={isAuthenticated ? <Writing/> : <Login/>} />
+          <Route path='/ongoingwork' element={isAuthenticated ? <Ongoingwork/> : <Login/>} />
+        </Routes>
         <Footer />
       </div>
     </BrowserRouter>

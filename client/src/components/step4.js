@@ -53,8 +53,11 @@ function Step4() {
 
   return (
     <div>
-      <div>
-        <h1>The Climactic Ending</h1>
+      <div className='step4Title'>
+        <h1>The climactic ending</h1>
+      </div>
+      <div className='promptarea'>
+        <p id="prompt"></p>
       </div>
       <form id="conclusion" onSubmit={handleFormSubmit}>
         <div>

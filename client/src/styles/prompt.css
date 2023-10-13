@@ -12,12 +12,14 @@
 p {
     color: white;
     font-size: 22px;
+    font-family: 'Spline Sans Mono', monospace;
 }
 
 textarea {
     width: 700px;
     height: 100px;
     font-size: 20px;
+    font-family: 'Spline Sans Mono', monospace;
 }
 
 button:active {
@@ -40,13 +42,13 @@ button:active {
   .newprompt {
     margin-left: 100px;
     margin-right:100px;
+    font-family: 'Spline Sans Mono', monospace;
   }
 
   .nextstep {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 80px;
   }
 
  .nextstep button a {

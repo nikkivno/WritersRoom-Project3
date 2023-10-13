@@ -1,3 +1,12 @@
+.step4Title {
+    text-align: center;
+}
+
+.step4Title h1 {
+    font-size: 400%;
+}
+
 .getwriting {
+    margin-top: 40px;
     width: 200px;
 }
