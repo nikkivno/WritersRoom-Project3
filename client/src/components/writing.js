@@ -63,7 +63,7 @@ export function Writing() {
       if (response.ok) {
         return await response.json();
       } else {
-        throw new Error("Error fetching user data");
+        throw  Error("Error fetching user data");
       }
     } catch (error) {
       throw error;
@@ -105,13 +105,11 @@ export function Writing() {
   }, [userEmail, promptId]);
 
   return (
-    <>
-      <div>
-        <h1 className="writing">Writing</h1>
-      </div>
+    <div className="writing-container">
+      <h1 className="writing-title">Writing</h1>
       <div className="full-container">
         <div className="texteditor">
-        <div className="userTitleContainer">
+          <div className="userTitleContainer">
             <input className="userTitle" placeholder="Story Title Here" />
           </div>
          
@@ -150,7 +148,7 @@ export function Writing() {
                 "alignright alignjustify | bullist numlist outdent indent | " +
                 "removeformat | help",
               content_style:
-                "body { font-family: Helvetica, Arial, sans-serif; font-size: 8px }",
+                "body { font-family: Helvetica, Arial, sans-serif; font-size: 8px; white-space: pre-wrap }",
             }}
           />
           <button onClick={log} className="submit">
@@ -159,27 +157,41 @@ export function Writing() {
         </div>
         <div className="card-container">
           <div className="card" id="prompt">
-            <p style={{ fontSize: "8px" }}>Prompt</p>
-            <p style={{ fontSize: "8px" }}>{userData ? userData.prompt : "Prompt Not Found"}</p>
+            <p className="card-title">Prompt</p>
+            <p className="card-content"style={{ fontSize: "14px" }} >
+              {userData ? userData.prompt : "Prompt Not Found"}
+            </p>
           </div>
           <div className="card" id="catalyst">
-            <p style={{ fontSize: "8px" }}>The Catalyst</p>
-            <p style={{ fontSize: "8px" }}>Characters: {getCatalystData().characters}</p>
-            <p style={{ fontSize: "8px" }}>Reason: {getCatalystData().reason}</p>
+            <p className="card-title">The Catalyst</p>
+            <p className="card-content" style={{ fontSize: "14px" }}>
+              Characters: {getCatalystData().characters}
+            </p>
+            <p className="card-content" style={{ fontSize: "14px" }}>
+              Reason: {getCatalystData().reason}
+            </p>
           </div>
           <div className="card" id="midpoint">
-            <p style={{ fontSize: "8px" }}>The Midpoint</p>
-            <p style={{ fontSize: "8px" }}>Coping Info: {getMidpointData().cope_info}</p>
-            <p style={{ fontSize: "8px" }}>Incident Consequence: {getMidpointData().incident_consequence}</p>
+            <p className="card-title">The Midpoint</p>
+            <p className="card-content" style={{ fontSize: "14px" }}>
+              Coping Info: {getMidpointData().cope_info}
+            </p>
+            <p className="card-content" style={{ fontSize: "14px" }}>
+              Incident Consequence: {getMidpointData().incident_consequence}
+            </p>
           </div>
           <div className="card" id="conclusion">
-            <p style={{ fontSize: "8px" }}>The Conclusion</p>
-            <p style={{ fontSize: "8px" }}>Before Climax: {getEndingData().before_climax}</p>
-            <p style={{ fontSize: "8px" }}>Climax: {getEndingData().climax}</p>
+            <p className="card-title">The Conclusion</p>
+            <p className="card-content"style={{ fontSize: "14px" }} >
+              Before Climax: {getEndingData().before_climax}
+            </p>
+            <p className="card-content"style={{ fontSize: "14px" }}>
+              Climax: {getEndingData().climax}
+            </p>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
