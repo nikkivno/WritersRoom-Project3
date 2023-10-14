@@ -1,6 +1,19 @@
 const { Schema, model } = require('mongoose');
 
-// Schema to create Prompt model
+// Define a schema for prompts
+const promptSchema = new Schema(
+  {
+    // Define fields for prompts here
+    characters: String,
+    reason: String,
+    // Add other fields as needed
+  },
+  {
+    _id: false, // To prevent generating separate _id for prompts
+  }
+);
+
+// Schema to create Novel model
 const novelSchema = new Schema(
   {
     title: { type: String, required: false },
@@ -15,6 +28,7 @@ const novelSchema = new Schema(
       required: true,
       ref: 'prompt',
     },
+    prompts: [promptSchema], // Array to store prompts within a novel
   },
   {
     toJSON: {
