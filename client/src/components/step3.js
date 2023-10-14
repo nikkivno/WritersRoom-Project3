@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/step3.css';
 
 function Step3() {
@@ -8,6 +8,33 @@ function Step3() {
   const [text2, setText2] = useState('');
   const [text3, setText3] = useState('');
   const [text4, setText4] = useState('');
+
+  //   load working prompt to display
+  useEffect(() => {
+    async function fetchData() {
+      const promptEl = document.getElementById('prompt');
+      const promptId = localStorage.getItem('promptId');
+
+      try {
+        const response = await fetch(`/api/prompts/${promptId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const prompt = await response.json();
+
+        if (response.ok) {
+          promptEl.innerHTML = prompt.prompt;
+        }
+      } catch (error) {
+        console.log('Error getting prompt: ', error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +61,7 @@ function Step3() {
       conflicts: text4,
     });
 
+    // add midpoint input to prompt db
     try {
       const response = await fetch(`/api/prompts/${promptId}`, {
         method: 'PUT',
@@ -45,8 +73,6 @@ function Step3() {
         }),
       });
 
-      const data = await response.json();
-
       if (response.ok) {
         alert('Input saved successfully');
       }
@@ -57,10 +83,10 @@ function Step3() {
 
   return (
     <div>
-      <div className='step3Title'>
+      <div className="step3Title">
         <h1>The Midpoint</h1>
       </div>
-      <div className='promptarea'>
+      <div className="promptarea">
         <p id="prompt"></p>
       </div>
       <form id="midpoint" onSubmit={handleFormSubmit}>
@@ -115,8 +141,8 @@ function Step3() {
         </div>
         <button type="submit">save</button>
       </form>
-      <div className='nextstep'>
-        <button className='tostep4'>
+      <div className="nextstep">
+        <button className="tostep4">
           <a href="/step4" className={currentPage === '/step4' ? 'active' : ''}>
             next step
           </a>

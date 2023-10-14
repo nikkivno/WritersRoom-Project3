@@ -1,24 +1,25 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Editor } from "@tinymce/tinymce-react";
-import "../styles/writing.css";
-import decode from "jwt-decode";
+import React, { useRef, useState, useEffect } from 'react';
+import { Editor } from '@tinymce/tinymce-react';
+import '../styles/writing.css';
+import decode from 'jwt-decode';
 
 export function Writing() {
   const editorRef = useRef(null);
-  const [userEmail, setUserEmail] = useState("");
+  const [userEmail, setUserEmail] = useState('');
   const [userData, setUserData] = useState(null);
   const [catalystData, setCatalystData] = useState({});
   const [midpointData, setMidpointData] = useState({});
   const [endingData, setEndingData] = useState({});
-  const [promptId, setPromptId] = useState("");
+  const [promptId, setPromptId] = useState('');
 
   const log = async () => {
+    // if editor has content, save content
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
 
-      const promptId = localStorage.getItem("promptId");
-      const novelId = localStorage.getItem("novelId");
-      const token = localStorage.getItem("jwt");
+      const currPromptId = localStorage.getItem('promptId');
+      const novelId = localStorage.getItem('novelId');
+      const token = localStorage.getItem('jwt');
       const userEmail = decode(token).email;
 
       try {
@@ -27,32 +28,35 @@ export function Writing() {
         const body = {
           text_input: editorRef.current.getContent(),
           email: userEmail,
-          prompt_id: promptId,
+          prompt_id: currPromptId,
         };
-        
+
+        // if novel already exists, update content with PUT
         if (novelId) {
           reqUrl = `/api/novels/${novelId}`;
-          method = "PUT";
-        } else if (promptId) {
-          reqUrl = `/api/novels/${promptId}`;
-          method = "PUT";
+          method = 'PUT';
         } else {
+          // novel doesn't exist, create with POST
           reqUrl = `/api/novels`;
-          method = "POST";
+          method = 'POST';
         }
         const response = await fetch(reqUrl, {
           method: method,
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(body),
         });
 
+        const data = await response.json();
+
         if (response.ok) {
-          alert("Content saved successfully");
+          // set novelId to indicate novel already exists in database
+          localStorage.setItem('novelId', data.id);
+          alert('Content saved successfully');
         }
       } catch (error) {
-        console.log("Error saving content: ", error);
+        console.log('Error saving content: ', error);
       }
     }
   };
@@ -63,7 +67,7 @@ export function Writing() {
       if (response.ok) {
         return await response.json();
       } else {
-        throw  Error("Error fetching user data");
+        throw Error('Error fetching user data');
       }
     } catch (error) {
       throw error;
@@ -83,11 +87,11 @@ export function Writing() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
+    const token = localStorage.getItem('jwt');
     if (token) {
       const email = decode(token).email;
       setUserEmail(email);
-      setPromptId(localStorage.getItem("promptId"));
+      setPromptId(localStorage.getItem('promptId'));
     }
   }, []);
 
@@ -96,11 +100,15 @@ export function Writing() {
       fetchDataForUser(promptId)
         .then((data) => {
           setUserData(data);
-          setCatalystData(data.catalyst_input ? JSON.parse(data.catalyst_input) : {});
-          setMidpointData(data.midpoint_input ? JSON.parse(data.midpoint_input) : {});
+          setCatalystData(
+            data.catalyst_input ? JSON.parse(data.catalyst_input) : {}
+          );
+          setMidpointData(
+            data.midpoint_input ? JSON.parse(data.midpoint_input) : {}
+          );
           setEndingData(data.ending_input ? JSON.parse(data.ending_input) : {});
         })
-        .catch((error) => console.error("Error fetching user data: ", error));
+        .catch((error) => console.error('Error fetching user data: ', error));
     }
   }, [userEmail, promptId]);
 
@@ -112,7 +120,7 @@ export function Writing() {
           <div className="userTitleContainer">
             <input className="userTitle" placeholder="Story Title Here" />
           </div>
-         
+
           <Editor
             apiKey="1yd2u78it8w81i51bwc4b01pd50szutiv7ut912vsj5d0lq7"
             onInit={(evt, editor) => (editorRef.current = editor)}
@@ -123,32 +131,32 @@ export function Writing() {
               menubar: false,
               browser_spellcheck: true,
               plugins: [
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "image",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "code",
-                "help",
-                "wordcount",
+                'advlist',
+                'autolink',
+                'lists',
+                'link',
+                'image',
+                'charmap',
+                'preview',
+                'anchor',
+                'searchreplace',
+                'visualblocks',
+                'code',
+                'fullscreen',
+                'insertdatetime',
+                'media',
+                'table',
+                'code',
+                'help',
+                'wordcount',
               ],
               toolbar:
-                "undo redo | blocks | " +
-                "bold italic forecolor | alignleft aligncenter " +
-                "alignright alignjustify | bullist numlist outdent indent | " +
-                "removeformat | help",
+                'undo redo | blocks | ' +
+                'bold italic forecolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
               content_style:
-                "body { font-family: Helvetica, Arial, sans-serif; font-size: 8px; white-space: pre-wrap }",
+                'body { font-family: Helvetica, Arial, sans-serif; font-size: 8px; white-space: pre-wrap }',
             }}
           />
           <button onClick={log} className="submit">
@@ -158,34 +166,34 @@ export function Writing() {
         <div className="card-container">
           <div className="card" id="prompt">
             <p className="card-title">Prompt</p>
-            <p className="card-content"style={{ fontSize: "14px" }} >
-              {userData ? userData.prompt : "Prompt Not Found"}
+            <p className="card-content" style={{ fontSize: '14px' }}>
+              {userData ? userData.prompt : 'Prompt Not Found'}
             </p>
           </div>
           <div className="card" id="catalyst">
             <p className="card-title">The Catalyst</p>
-            <p className="card-content" style={{ fontSize: "14px" }}>
+            <p className="card-content" style={{ fontSize: '14px' }}>
               Characters: {getCatalystData().characters}
             </p>
-            <p className="card-content" style={{ fontSize: "14px" }}>
+            <p className="card-content" style={{ fontSize: '14px' }}>
               Reason: {getCatalystData().reason}
             </p>
           </div>
           <div className="card" id="midpoint">
             <p className="card-title">The Midpoint</p>
-            <p className="card-content" style={{ fontSize: "14px" }}>
+            <p className="card-content" style={{ fontSize: '14px' }}>
               Coping Info: {getMidpointData().cope_info}
             </p>
-            <p className="card-content" style={{ fontSize: "14px" }}>
+            <p className="card-content" style={{ fontSize: '14px' }}>
               Incident Consequence: {getMidpointData().incident_consequence}
             </p>
           </div>
           <div className="card" id="conclusion">
             <p className="card-title">The Conclusion</p>
-            <p className="card-content"style={{ fontSize: "14px" }} >
+            <p className="card-content" style={{ fontSize: '14px' }}>
               Before Climax: {getEndingData().before_climax}
             </p>
-            <p className="card-content"style={{ fontSize: "14px" }}>
+            <p className="card-content" style={{ fontSize: '14px' }}>
               Climax: {getEndingData().climax}
             </p>
           </div>
