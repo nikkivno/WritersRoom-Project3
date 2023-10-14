@@ -13,10 +13,11 @@ export function Writing() {
   const [promptId, setPromptId] = useState('');
 
   const log = async () => {
+    // if editor has content, save content
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
 
-      const promptId = localStorage.getItem('promptId');
+      const currPromptId = localStorage.getItem('promptId');
       const novelId = localStorage.getItem('novelId');
       const token = localStorage.getItem('jwt');
       const userEmail = decode(token).email;
@@ -27,13 +28,15 @@ export function Writing() {
         const body = {
           text_input: editorRef.current.getContent(),
           email: userEmail,
-          prompt_id: promptId,
+          prompt_id: currPromptId,
         };
 
+        // if novel already exists, update content with PUT
         if (novelId) {
           reqUrl = `/api/novels/${novelId}`;
           method = 'PUT';
         } else {
+          // novel doesn't exist, create with POST
           reqUrl = `/api/novels`;
           method = 'POST';
         }
@@ -48,7 +51,8 @@ export function Writing() {
         const data = await response.json();
 
         if (response.ok) {
-          localStorage.setItem('novelId', data._id);
+          // set novelId to indicate novel already exists in database
+          localStorage.setItem('novelId', data.id);
           alert('Content saved successfully');
         }
       } catch (error) {
