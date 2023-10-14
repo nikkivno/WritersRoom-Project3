@@ -114,7 +114,7 @@ export function Writing() {
 
   return (
     <div className="writing-container">
-      <h1 className="writing-title">Writing</h1>
+      <h1 className="writing">Writing</h1>
       <div className="full-container">
         <div className="texteditor">
           <div className="userTitleContainer">
@@ -151,16 +151,16 @@ export function Writing() {
                 'wordcount',
               ],
               toolbar:
-                'undo redo | blocks | ' +
+                'undo redo | blocks | fontfamily fontsize |' +
                 'bold italic forecolor | alignleft aligncenter ' +
                 'alignright alignjustify | bullist numlist outdent indent | ' +
                 'removeformat | help',
               content_style:
-                'body { font-family: Helvetica, Arial, sans-serif; font-size: 8px; white-space: pre-wrap }',
+                'body { font-family: Helvetica, Arial, sans-serif; white-space: pre-wrap }',
             }}
           />
           <button onClick={log} className="submit">
-            Save
+            save
           </button>
         </div>
         <div className="card-container">
