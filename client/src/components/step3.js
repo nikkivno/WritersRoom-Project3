@@ -144,7 +144,7 @@ function Step3() {
       </form>
       <div className='nextstep'>
         <button className='tostep4'>
-          <a href="/step4" className={currentPage === '/step4' ? 'active' : ''}>
+          <Link to="/step4" className={currentPage === '/step4' ? 'active' : ''}>
             next step
           </Link>
         </button>

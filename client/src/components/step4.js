@@ -124,8 +124,8 @@ function Step4() {
       </form>
       <div className='nextstep'>
         <button className='getwriting'>
-          <a
-            href="/writing"
+          <Link
+            to="/writing"
             className={currentPage === '/writing' ? 'active' : ''}
           >
             Get Writing!
