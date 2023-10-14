@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import '../styles/prompt.css';
 import decode from 'jwt-decode';
-import PropagateLoader from 'react-spinners/PropagateLoader'
+import PropagateLoader from 'react-spinners/PropagateLoader';
 
 function Prompt() {
   const [loading, setLoading] = useState(false);
@@ -41,7 +41,7 @@ function Prompt() {
       promptEl.innerHTML = data;
     } catch (error) {
       console.log('Error requesting a prompt: ', error);
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -95,13 +95,16 @@ function Prompt() {
           required
         />
         <button onClick={() => setLoading(!loading)}>prompt Me</button>
-        {loading && <div className='overlay'><PropagateLoader color='#915F6D' loading={loading} /></div>}
-        
+        {loading && (
+          <div className="overlay">
+            <PropagateLoader color="#915F6D" loading={loading} />
+          </div>
+        )}
       </form>
-      <div className='newprompt'>
+      <div className="newprompt">
         <p id="generatedPrompt"></p>
       </div>
-      <div className='nextstep'>
+      <div className="nextstep">
         <button onClick={handleNextStep}>
           <Link to="/step2" className={currentPage === '/step2' ? 'active' : ''}>
             next step

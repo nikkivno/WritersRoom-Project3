@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import '../styles/step4.css';
 
@@ -8,6 +8,33 @@ function Step4() {
   const [textarea1, setTextArea1] = useState('');
   const [textarea2, setTextArea2] = useState('');
   const [textarea3, setTextArea3] = useState('');
+
+  //   load working prompt to display
+  useEffect(() => {
+    async function fetchData() {
+      const promptEl = document.getElementById('prompt');
+      const promptId = localStorage.getItem('promptId');
+
+      try {
+        const response = await fetch(`/api/prompts/${promptId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const prompt = await response.json();
+
+        if (response.ok) {
+          promptEl.innerHTML = prompt.prompt;
+        }
+      } catch (error) {
+        console.log('Error getting prompt: ', error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,6 +58,7 @@ function Step4() {
       fallout: textarea3,
     });
 
+    // add ending input to prompt db
     try {
       const response = await fetch(`/api/prompts/${promptId}`, {
         method: 'PUT',
@@ -42,8 +70,6 @@ function Step4() {
         }),
       });
 
-      const data = await response.json();
-
       if (response.ok) {
         alert('Input saved successfully');
       }
@@ -54,10 +80,10 @@ function Step4() {
 
   return (
     <div>
-      <div className='step4Title'>
+      <div className="step4Title">
         <h1>The climactic ending</h1>
       </div>
-      <div className='promptarea'>
+      <div className="promptarea">
         <p id="prompt"></p>
       </div>
       <form id="conclusion" onSubmit={handleFormSubmit}>
@@ -98,7 +124,10 @@ function Step4() {
       </form>
       <div className='nextstep'>
         <button className='getwriting'>
-          <Link to="/writing" className={currentPage === '/writing' ? 'active' : ''}>
+          <a
+            href="/writing"
+            className={currentPage === '/writing' ? 'active' : ''}
+          >
             Get Writing!
           </Link>
         </button>

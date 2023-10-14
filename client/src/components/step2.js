@@ -77,8 +77,6 @@ function Step2() {
         }),
       });
 
-      const data = await response.json();
-
       if (response.ok) {
         alert('Input saved successfully');
       }
@@ -89,10 +87,10 @@ function Step2() {
 
   return (
     <div>
-      <div className='step2Title'>
+      <div className="step2Title">
         <h1>The catylist</h1>
       </div>
-      <div className='promptarea'>
+      <div className="promptarea">
         <p id="prompt"></p>
       </div>
       <form id="catylist" onSubmit={handleFormSubmit}>
