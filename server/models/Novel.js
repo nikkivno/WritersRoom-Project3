@@ -11,7 +11,7 @@ const novelSchema = new Schema(
       ref: 'user',
     },
     prompt_id: {
-      type: String,
+      type: Schema.Types.ObjectId,
       required: true,
       ref: 'prompt',
     },
