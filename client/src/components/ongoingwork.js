@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; 
 import '../styles/ongoingwork.css';
 
+import Trash from '../images/delete.png'
+
 function Ongoingwork() {
   const [novels, setNovels] = useState([]);
   const currentUserEmail = 'seg@seg.com'; 
@@ -32,6 +34,9 @@ function Ongoingwork() {
             >
               <h2>{novel.title}</h2>
             </Link>
+            <div>
+              <img src={Trash} className='trash'/>
+            </div>
           </div>
         ))}
       </div>
