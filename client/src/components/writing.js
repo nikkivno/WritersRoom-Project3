@@ -1,4 +1,3 @@
-
 import React, { useRef, useState, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -12,7 +11,9 @@ export function Writing() {
   const [promptId, setPromptId] = useState('');
   const [editingNovel, setEditingNovel] = useState(null);
   const [titleInput, setTitleInput] = useState('');
-  const [editorInitialValue, setEditorInitialValue] = useState('<p>Start your story here!</p>');
+  const [editorInitialValue, setEditorInitialValue] = useState(
+    '<p>Start your story here!</p>'
+  );
   const [promptText, setPromptText] = useState('');
   const [promptsArray, setPromptsArray] = useState([]);
   const [catalystData, setCatalystData] = useState({});
@@ -21,10 +22,11 @@ export function Writing() {
   const [catalystCharacters, setCatalystCharacters] = useState('');
   const [catalystReason, setCatalystReason] = useState('');
   const [midpointCopeInfo, setMidpointCopeInfo] = useState('');
-  const [midpointIncidentConsequence, setMidpointIncidentConsequence] = useState('');
+  const [midpointIncidentConsequence, setMidpointIncidentConsequence] =
+    useState('');
   const [endingBeforeClimax, setEndingBeforeClimax] = useState('');
   const [endingClimax, setEndingClimax] = useState('');
-  
+
   const location = useLocation();
   const params = useParams();
 
@@ -54,6 +56,7 @@ export function Writing() {
       fetch(`/api/novels/${params.novelId}`)
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           setEditingNovel(data);
           fetchPromptText(data.prompt_id);
           setPromptsArray(data.prompts);
@@ -61,9 +64,12 @@ export function Writing() {
           setCatalystCharacters(data.catalyst_characters || '');
           setCatalystReason(data.catalyst_reason || '');
           setMidpointCopeInfo(data.midpoint_cope_info || '');
-          setMidpointIncidentConsequence(data.midpoint_incident_consequence || '');
+          setMidpointIncidentConsequence(
+            data.midpoint_incident_consequence || ''
+          );
           setEndingBeforeClimax(data.ending_before_climax || '');
           setEndingClimax(data.ending_climax || '');
+          setPromptId(data.prompt_id);
         })
         .catch((error) => {
           console.error('Error fetching novel data: ', error);
@@ -115,14 +121,13 @@ export function Writing() {
     return novelWithCardData;
   };
 
- 
   const log = async () => {
     if (editorRef.current) {
       const currPromptId = promptId;
       const novelId = params.novelId;
       const token = localStorage.getItem('jwt');
       const userEmail = decode(token).email;
-  
+
       const novelData = {
         title: titleInput,
         text_input: editorRef.current.getContent(),
@@ -143,11 +148,11 @@ export function Writing() {
           },
         }),
       };
-  
+
       try {
         let reqUrl;
         let method;
-  
+
         if (novelId) {
           reqUrl = `/api/novels/${novelId}`;
           method = 'PUT';
@@ -155,7 +160,7 @@ export function Writing() {
           reqUrl = `/api/novels`;
           method = 'POST';
         }
-  
+
         const response = await fetch(reqUrl, {
           method: method,
           headers: {
@@ -163,9 +168,9 @@ export function Writing() {
           },
           body: JSON.stringify(novelData),
         });
-  
+
         const data = await response.json();
-  
+
         if (response.ok) {
           window.location.href = `/writing/${data.id}`;
           alert('Content saved successfully');
@@ -273,9 +278,7 @@ export function Writing() {
                 'alignright alignjustify | bullist numlist outdent indent | ' +
                 'removeformat | help',
               content_style:
-
                 'body { font-family: Helvetica, Arial, sans-serif; font-size: 24px; white-space: pre-wrap }',
-
             }}
           />
           <button onClick={log} className="submit">
@@ -299,7 +302,7 @@ export function Writing() {
             </p>
           </div>
           <div className="card" id="midpoint">
-            <p className= "card-title">The Midpoint</p>
+            <p className="card-title">The Midpoint</p>
             <p className="card-content" style={{ fontSize: '14px' }}>
               Coping Info: {midpointData.cope_info}
             </p>

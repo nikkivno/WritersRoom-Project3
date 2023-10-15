@@ -17,7 +17,12 @@ async function addNovel(req, res) {
 // get all novels
 async function getAllNovels(req, res) {
   try {
-    const novels = await Novel.find();
+    let novels;
+    if (req.query) {
+      novels = await Novel.find(req.query);
+    } else {
+      novels = await Novel.find();
+    }
 
     res.status(200).json(novels);
   } catch (error) {
@@ -29,7 +34,7 @@ async function getAllNovels(req, res) {
 // get a novel by id
 async function getNovelById(req, res) {
   try {
-    const novel = await Novel.findById(req.params.id);
+    const novel = await Novel.findById(req.params.id).populate('prompt_id');
 
     if (!novel) {
       return res
