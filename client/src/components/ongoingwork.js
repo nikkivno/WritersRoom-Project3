@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/ongoingwork.css';
 
-import Trash from '../images/delete.png'
+import Trash from '../images/delete.png';
 
 function Ongoingwork() {
   const [novels, setNovels] = useState([]);
@@ -19,7 +19,10 @@ function Ongoingwork() {
       });
   }, [currentUserEmail]);
 
-  const handleDeleteNovel = async (novelId) => {
+  async function handleDeleteNovel(event) {
+    // get novel id of clicked delete icon
+    const novelId = event.target.parentNode.parentNode.getAttribute('data-id');
+
     try {
       // delete novel from db
       const response = await fetch(`/api/novels/${novelId}`, {
@@ -36,7 +39,7 @@ function Ongoingwork() {
     } catch (error) {
       console.log(`Error deleting novel with id: ${novelId}. Error: ${error}`);
     }
-  };
+  }
 
   return (
     <div>
@@ -45,15 +48,15 @@ function Ongoingwork() {
       </div>
       <div className="book-covers">
         {novels.map((novel) => (
-          <div className="book-cover" key={novel._id}>
+          <div className="book-cover" key={novel._id} data-id={novel._id}>
             <Link
               to={`/writing/${novel._id}?title=${novel.title}`}
               style={{ textDecoration: 'none', color: 'inherit' }}
             >
               <h2>{novel.title}</h2>
             </Link>
-            <div>
-              <img src={Trash} className='trash'/>
+            <div onClick={handleDeleteNovel}>
+              <img src={Trash} className="trash" />
             </div>
           </div>
         ))}
