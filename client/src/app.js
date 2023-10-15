@@ -50,14 +50,35 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
-          <Route path="/newwork" element={isAuthenticated ? <Prompt /> : <Login />} />
-          <Route path="/step2" element={isAuthenticated ? <Step2 /> : <Login />} />
-          <Route path="/step3" element={isAuthenticated ? <Step3 /> : <Login />} />
-          <Route path="/step4" element={isAuthenticated ? <Step4 /> : <Login />} />
+          <Route
+            path="/newwork"
+            element={isAuthenticated ? <Prompt /> : <Login />}
+          />
+          <Route
+            path="/step2"
+            element={isAuthenticated ? <Step2 /> : <Login />}
+          />
+          <Route
+            path="/step3"
+            element={isAuthenticated ? <Step3 /> : <Login />}
+          />
+          <Route
+            path="/step4"
+            element={isAuthenticated ? <Step4 /> : <Login />}
+          />
           {/* Add the route for the Writing page with novelId parameter */}
-          <Route path="/writing/" element={isAuthenticated ? <Writing /> : <Login />} />
-          <Route path="/writing/:novelId" element={isAuthenticated ? <Writing /> : <Login />} />
-          <Route path="/ongoingwork" element={isAuthenticated ? <Ongoingwork /> : <Login />} />
+          <Route
+            path="/writing/"
+            element={isAuthenticated ? <Writing /> : <Login />}
+          />
+          <Route
+            path="/writing/:novelId"
+            element={isAuthenticated ? <Writing /> : <Login />}
+          />
+          <Route
+            path="/ongoingwork"
+            element={isAuthenticated ? <Ongoingwork /> : <Login />}
+          />
         </Routes>
         <Footer />
       </div>

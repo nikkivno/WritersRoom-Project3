@@ -16,8 +16,6 @@ function Login() {
 
   const navigate = useNavigate();
 
-
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -39,8 +37,7 @@ function Login() {
   const handleSuccess = (token, userId) => {
     localStorage.setItem('jwt', token);
     localStorage.setItem('user_id', userId);
-    navigate("/newwork");
-
+    navigate('/ongoingwork');
   };
 
   const handleLoginSubmit = async (e) => {
@@ -65,7 +62,7 @@ function Login() {
         const data = await response.json();
         console.log(data);
         console.log('Success logging in.');
-        handleSuccess(data.token,data._id);
+        handleSuccess(data.token, data._id);
       }
     } catch (error) {
       console.log('Error logging in: ', error);
@@ -94,15 +91,14 @@ function Login() {
         alert(data.message);
       } else if (response.status === 200) {
         const data = await response.json();
-        console.log(data)
+        console.log(data);
         console.log('Success registering.');
-        handleSuccess(data.token,data._id);
+        handleSuccess(data.token, data._id);
       }
     } catch (error) {
       console.log('Error registering: ', error);
     }
   };
-
 
   return (
     <div>
@@ -118,25 +114,25 @@ function Login() {
               placeholder="Email"
               required
             />
-            <div className='input-box'>
-            <input
-              value={loginPassword}
-              name="loginPassword"
-              onChange={handleInputChange}
-              type={showLoginPassword ? 'text' : 'password'}
-              placeholder="Password"
-              required
-            />
-            <img
-              src={showLoginPassword ? EyeOpen : EyeClose}
-              id='eyeicon'
-              onClick={() => setShowLoginPassword(!showLoginPassword)}
-            />
+            <div className="input-box">
+              <input
+                value={loginPassword}
+                name="loginPassword"
+                onChange={handleInputChange}
+                type={showLoginPassword ? 'text' : 'password'}
+                placeholder="Password"
+                required
+              />
+              <img
+                src={showLoginPassword ? EyeOpen : EyeClose}
+                id="eyeicon"
+                onClick={() => setShowLoginPassword(!showLoginPassword)}
+              />
             </div>
             <button type="submit">log in</button>
           </form>
         </div>
-        <div className='vertical-divider'></div>
+        <div className="vertical-divider"></div>
         <div className="signup">
           <h1>sign up</h1>
           <form id="signupform" onSubmit={handleRegisterSubmit}>
@@ -164,20 +160,20 @@ function Login() {
               placeholder="Email"
               required
             />
-            <div className='input-box'>
-            <input
-              value={signUpPassword}
-              name="signUpPassword"
-              onChange={handleInputChange}
-              type={showSignUpPassword ? 'text' : 'password'}
-              placeholder="Password"
-              required
-            />
-            <img
-              src={showSignUpPassword ? EyeOpen : EyeClose}
-              id='eyeicon'
-              onClick={() => setShowSignUpPassword(!showSignUpPassword)}
-            />
+            <div className="input-box">
+              <input
+                value={signUpPassword}
+                name="signUpPassword"
+                onChange={handleInputChange}
+                type={showSignUpPassword ? 'text' : 'password'}
+                placeholder="Password"
+                required
+              />
+              <img
+                src={showSignUpPassword ? EyeOpen : EyeClose}
+                id="eyeicon"
+                onClick={() => setShowSignUpPassword(!showSignUpPassword)}
+              />
             </div>
             <button type="submit">sign up</button>
           </form>
