@@ -7,7 +7,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   let user = localStorage.getItem('user_id');
-  console.warn(user);
+  // console.warn(user);
 
   function logOut() {
     localStorage.clear();
@@ -51,7 +51,7 @@ function Navbar() {
         <li>
           <Link
             to="/ongoingwork"
-            classname={currentPage === '/ongoingwork' ? 'active' : ''}
+            className={currentPage === '/ongoingwork' ? 'active' : ''}
           >
             ongoing Work
           </Link>
