@@ -10,8 +10,7 @@ const path = require('path');
 app.use(express.json());
 
 // Connect to the database using the connection string
-mongoose
-  .connect('mongodb://127.0.0.1:27017/writers-room', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/writers-room', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

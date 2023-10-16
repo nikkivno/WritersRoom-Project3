@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 // Connection for MongoDB with console logs for success or error
-mongoose.connect('mongodb://127.0.0.1:27017/writers-room', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/writers-room', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
