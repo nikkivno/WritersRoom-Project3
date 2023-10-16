@@ -7,7 +7,7 @@ input, label {
     margin: 0 auto;
 }
 
-input {
+.steps {
     text-align: center;
     border-radius: 7px;
     width: 700px;

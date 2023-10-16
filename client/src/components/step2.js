@@ -100,6 +100,7 @@ function Step2() {
             name="textInput1"
             onChange={handleInputChange}
             type="text"
+            className='steps'
             required
           />
         </div>
@@ -112,6 +113,7 @@ function Step2() {
             name="textInput2"
             onChange={handleInputChange}
             type="text"
+            className='steps'
             required
           />
         </div>
@@ -122,6 +124,7 @@ function Step2() {
             name="textInput3"
             onChange={handleInputChange}
             type="text"
+            className='steps'
             required
           />
         </div>
@@ -132,6 +135,7 @@ function Step2() {
             name="textInput4"
             onChange={handleInputChange}
             type="text"
+            className='steps'
             required
           />
         </div>
@@ -145,6 +149,7 @@ function Step2() {
             name="textInput5"
             onChange={handleInputChange}
             type="text"
+            className='steps'
             required
           />
         </div>

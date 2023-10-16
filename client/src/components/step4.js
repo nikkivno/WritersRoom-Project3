@@ -93,6 +93,7 @@ function Step4() {
             name="textarea1"
             onChange={handleInputChange}
             type="text"
+            className='steps'
             required
           />
         </div>
@@ -103,6 +104,7 @@ function Step4() {
             name="textarea2"
             onChange={handleInputChange}
             type="text"
+            className='steps'
             required
           />
         </div>
@@ -116,6 +118,7 @@ function Step4() {
             name="textarea3"
             onChange={handleInputChange}
             type="text"
+            className='steps'
             required
           />
         </div>
