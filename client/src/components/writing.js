@@ -1,13 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import '../styles/writing.css';
 import decode from 'jwt-decode';
 
 export function Writing() {
   const editorRef = useRef(null);
   const [userEmail, setUserEmail] = useState('');
-  const [userData, setUserData] = useState(null);
   const [promptId, setPromptId] = useState('');
   const [editingNovel, setEditingNovel] = useState(null);
   const [titleInput, setTitleInput] = useState('');
@@ -15,19 +14,10 @@ export function Writing() {
     '<p>Start your story here!</p>'
   );
   const [promptText, setPromptText] = useState('');
-  const [promptsArray, setPromptsArray] = useState([]);
   const [catalystData, setCatalystData] = useState({});
   const [midpointData, setMidpointData] = useState({});
   const [endingData, setEndingData] = useState({});
-  const [catalystCharacters, setCatalystCharacters] = useState('');
-  const [catalystReason, setCatalystReason] = useState('');
-  const [midpointCopeInfo, setMidpointCopeInfo] = useState('');
-  const [midpointIncidentConsequence, setMidpointIncidentConsequence] =
-    useState('');
-  const [endingBeforeClimax, setEndingBeforeClimax] = useState('');
-  const [endingClimax, setEndingClimax] = useState('');
 
-  const location = useLocation();
   const params = useParams();
 
   useEffect(() => {
@@ -37,93 +27,50 @@ export function Writing() {
       setUserEmail(email);
       setPromptId(localStorage.getItem('promptId'));
     }
-  }, []);
 
-  useEffect(() => {
-    if (userEmail && promptId) {
-      fetchDataForUser(promptId)
-        .then((data) => {
-          setUserData(data);
-          setCardData(data);
-          fetchPromptText(data._id);
-        })
-        .catch((error) => console.error('Error fetching user data: ', error));
-    }
-  }, [userEmail, promptId]);
-
-  useEffect(() => {
     if (params.novelId) {
       fetch(`/api/novels/${params.novelId}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          setEditingNovel(data);
-          fetchPromptText(data.prompt_id);
-          setPromptsArray(data.prompts);
-          setPromptsData(data);
-          setCatalystCharacters(data.catalyst_characters || '');
-          setCatalystReason(data.catalyst_reason || '');
-          setMidpointCopeInfo(data.midpoint_cope_info || '');
-          setMidpointIncidentConsequence(
-            data.midpoint_incident_consequence || ''
-          );
-          setEndingBeforeClimax(data.ending_before_climax || '');
-          setEndingClimax(data.ending_climax || '');
           setPromptId(data.prompt_id);
+          setCatalystData(JSON.parse(data.prompt_id.catalyst_input));
+          setMidpointData(JSON.parse(data.prompt_id.midpoint_input));
+          setEndingData(JSON.parse(data.prompt_id.ending_input));
+
+          setEditingNovel(data);
+          setPromptText(data.prompt_id.prompt);
         })
         .catch((error) => {
           console.error('Error fetching novel data: ', error);
         });
+    } else if (userEmail && promptId) {
+      fetchPrompt(promptId);
     }
-  }, [params.novelId]);
+  }, [params.novelId, userEmail, promptId]);
 
   useEffect(() => {
     if (editingNovel) {
       setTitleInput(editingNovel.title);
       setEditorInitialValue(editingNovel.text_input);
-      setPromptsData(editingNovel);
     }
   }, [editingNovel]);
 
-  const fetchPromptText = (promptId) => {
+  const fetchPrompt = (promptId) => {
     fetch(`/api/prompts/${promptId}`)
       .then((response) => response.json())
       .then((data) => {
         setPromptText(data.prompt);
+        setCatalystData(JSON.parse(data.catalyst_input));
+        setMidpointData(JSON.parse(data.midpoint_input));
+        setEndingData(JSON.parse(data.ending_input));
       })
       .catch((error) => {
         console.error('Error fetching prompt text: ', error);
       });
   };
 
-  const saveCardData = (novelData) => {
-    const novelWithCardData = {
-      ...novelData,
-      prompts: [
-        {
-          catalyst: {
-            characters: catalystCharacters,
-            reason: catalystReason,
-          },
-          midpoint: {
-            cope_info: midpointCopeInfo,
-            incident_consequence: midpointIncidentConsequence,
-          },
-          ending: {
-            before_climax: endingBeforeClimax,
-            climax: endingClimax,
-          },
-        },
-        ...promptsArray,
-      ],
-    };
-
-    return novelWithCardData;
-  };
-
   const log = async () => {
     if (editorRef.current) {
-      const currPromptId = promptId;
       const novelId = params.novelId;
       const token = localStorage.getItem('jwt');
       const userEmail = decode(token).email;
@@ -132,21 +79,7 @@ export function Writing() {
         title: titleInput,
         text_input: editorRef.current.getContent(),
         email: userEmail,
-        prompt_id: currPromptId,
-        prompts: promptsArray.concat({
-          catalyst: {
-            characters: catalystCharacters,
-            reason: catalystReason,
-          },
-          midpoint: {
-            cope_info: midpointCopeInfo,
-            incident_consequence: midpointIncidentConsequence,
-          },
-          ending: {
-            before_climax: endingBeforeClimax,
-            climax: endingClimax,
-          },
-        }),
+        prompt_id: promptId,
       };
 
       try {
@@ -178,55 +111,6 @@ export function Writing() {
       } catch (error) {
         console.error('Error saving content: ', error);
       }
-    }
-  };
-  const fetchDataForUser = async (promptId) => {
-    try {
-      const response = await fetch(`/api/prompts/${promptId}`);
-      if (response.ok) {
-        return await response.json();
-      } else {
-        throw Error('Error fetching user data');
-      }
-    } catch (error) {
-      throw error;
-    }
-  };
-
-  const setCardData = (data) => {
-    if (data.catalyst_input) {
-      setCatalystData(JSON.parse(data.catalyst_input));
-    } else {
-      setCatalystData({});
-    }
-    if (data.midpoint_input) {
-      setMidpointData(JSON.parse(data.midpoint_input));
-    } else {
-      setMidpointData({});
-    }
-    if (data.ending_input) {
-      setEndingData(JSON.parse(data.ending_input));
-    } else {
-      setEndingData({});
-    }
-  };
-
-  const setPromptsData = (data) => {
-    setPromptsArray(data.prompts || []);
-    if (data.catalyst_input) {
-      setCatalystData(JSON.parse(data.catalyst_input));
-    } else {
-      setCatalystData({});
-    }
-    if (data.midpoint_input) {
-      setMidpointData(JSON.parse(data.midpoint_input));
-    } else {
-      setMidpointData({});
-    }
-    if (data.ending_input) {
-      setEndingData(JSON.parse(data.ending_input));
-    } else {
-      setEndingData({});
     }
   };
   return (
@@ -289,7 +173,7 @@ export function Writing() {
           <div className="card" id="prompt">
             <p className="card-title">Prompt</p>
             <p className="card-content" style={{ fontSize: '14px' }}>
-              {promptText || (userData ? userData.prompt : 'Prompt Not Found')}
+              {promptText || 'Prompt Not Found'}
             </p>
           </div>
           <div className="card" id="catalyst">
@@ -300,6 +184,15 @@ export function Writing() {
             <p className="card-content" style={{ fontSize: '14px' }}>
               Reason: {catalystData.reason}
             </p>
+            <p className="card-content" style={{ fontSize: '14px' }}>
+              Time Period: {catalystData.time_period}
+            </p>
+            <p className="card-content" style={{ fontSize: '14px' }}>
+              Setting: {catalystData.setting}
+            </p>
+            <p className="card-content" style={{ fontSize: '14px' }}>
+              Action: {catalystData.action}
+            </p>
           </div>
           <div className="card" id="midpoint">
             <p className="card-title">The Midpoint</p>
@@ -309,6 +202,12 @@ export function Writing() {
             <p className="card-content" style={{ fontSize: '14px' }}>
               Incident Consequence: {midpointData.incident_consequence}
             </p>
+            <p className="card-content" style={{ fontSize: '14px' }}>
+              Internal Struggles: {midpointData.internal_struggles}
+            </p>
+            <p className="card-content" style={{ fontSize: '14px' }}>
+              Conflicts: {midpointData.conflicts}
+            </p>
           </div>
           <div className="card" id="conclusion">
             <p className="card-title">The Conclusion</p>
@@ -317,6 +216,9 @@ export function Writing() {
             </p>
             <p className="card-content" style={{ fontSize: '14px' }}>
               Climax: {endingData.climax}
+            </p>
+            <p className="card-content" style={{ fontSize: '14px' }}>
+              Fallout: {endingData.fallout}
             </p>
           </div>
         </div>
