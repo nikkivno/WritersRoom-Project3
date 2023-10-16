@@ -7,34 +7,29 @@
 1. [Description](#description)
 2. [Usage](#usage)
 
-3. [Installation](#installation)
-4. [Contributing](#contributing)
+3. [Contributing](#contributing)
 
-5. [Tests](#tests)
+4. [License](#license)
 
-6. [License](#license)
-
-7. [Questions](#questions)
+5. [Questions](#questions)
 
 ## Description
 
-Writers Room is a website geared towards helping writers start a novel.
+Writers Room is a website geared towards assisting writers to jump start their novels/story ideas. It provides prompts that engage the writer and provide useful elements to help get started.
 
 ## Usage
 
-Launching and using website (More Details to follow as project progresses).
+Visit website, Sign up or login, Choose New Work or Ongoing Work. Follow the Prompts if choosing the New Work option.
 
-## Installation
+![Homepage](./client/src/images/writers-room-homepage.png)
 
-Not Applicable at this time
+![Login/Sign Up](./client/src/images/writers-room-login-page.png)
+
+![New Work](./client/src/images/writers-room-prompt.png)
 
 ## Contributing
 
-Not Applicable at this time
-
-## Tests
-
-Not Applicable at this time
+We're not accepting contributions at this time. If that changes, we'll be sure to update this section with additional information.
 
 ## License
 
