@@ -4,9 +4,14 @@ import '../styles/ongoingwork.css';
 
 import Trash from '../images/delete.png';
 
+// import decode from 'jwt-decode'; 
+
+// const token = localStorage.getItem('jwt');
+// const currentUserEmail = decode(token).email;
+
 function Ongoingwork() {
   const [novels, setNovels] = useState([]);
-  const currentUserEmail = 'test@email.com';
+  const currentUserEmail = 'seg@seg.com';
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/novels?email=${currentUserEmail}`)
@@ -44,7 +49,7 @@ function Ongoingwork() {
   return (
     <div>
       <div className="work-header">
-        <h1 className="ongoingwork">Ongoing Work</h1>
+        <h1 className="ongoingwork">ongoing Work</h1>
       </div>
       <div className="book-covers">
         {novels.map((novel) => (
