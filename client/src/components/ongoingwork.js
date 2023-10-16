@@ -4,32 +4,37 @@ import '../styles/ongoingwork.css';
 
 import Trash from '../images/delete.png';
 
-// import decode from 'jwt-decode'; 
-
-// const token = localStorage.getItem('jwt');
-// const currentUserEmail = decode(token).email;
+import decode from 'jwt-decode';
 
 function Ongoingwork() {
   const [novels, setNovels] = useState([]);
-  const currentUserEmail = 'seg@seg.com';
+  const token = localStorage.getItem('jwt');
+  const currentUserEmail = decode(token).email;
 
   useEffect(() => {
+    let isMounted = true;
+
+    // Fetch novels based on the current user's email
     fetch(`http://localhost:3000/api/novels?email=${currentUserEmail}`)
       .then((response) => response.json())
       .then((data) => {
-        setNovels(data);
+        if (isMounted) {
+          setNovels(data);
+        }
       })
       .catch((error) => {
         console.error('Error fetching novels: ', error);
       });
+
+    return () => {
+      isMounted = false;
+    };
   }, [currentUserEmail]);
 
   async function handleDeleteNovel(event) {
-    // get novel id of clicked delete icon
     const novelId = event.target.parentNode.parentNode.getAttribute('data-id');
 
     try {
-      // delete novel from db
       const response = await fetch(`/api/novels/${novelId}`, {
         method: 'DELETE',
         headers: {
@@ -37,7 +42,6 @@ function Ongoingwork() {
         },
       });
 
-      // remove novel from page
       if (response.ok) {
         setNovels(novels.filter((novel) => novel._id !== novelId));
       }
@@ -61,10 +65,10 @@ function Ongoingwork() {
               <h2>{novel.title}</h2>
             </Link>
             <div onClick={handleDeleteNovel}>
-              <img src={Trash} className="trash" />
+              <img src={Trash} className="trash" alt="Delete" />
             </div>
           </div>
-        ))} 
+        ))}
       </div>
     </div>
   );
