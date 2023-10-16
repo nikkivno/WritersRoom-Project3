@@ -4,7 +4,7 @@ const { User, Prompt } = require('../models');
 
 // Connect to the database
 mongoose
-  .connect('mongodb://127.0.0.1:27017/writers-room', {
+  .connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/writers-room', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
