@@ -155,12 +155,13 @@ export function Writing() {
                 'code',
                 'help',
                 'wordcount',
+                'paste',
               ],
               toolbar:
                 'undo redo | blocks | fontfamily fontsize |' +
                 'bold italic forecolor | alignleft aligncenter ' +
                 'alignright alignjustify | bullist numlist outdent indent | ' +
-                'removeformat | help',
+                'removeformat | help' | 'paste pastetext',
               content_style:
                 'body { font-family: Helvetica, Arial, sans-serif; font-size: 24px; white-space: pre-wrap }',
             }}

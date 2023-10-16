@@ -1,4 +1,3 @@
-
 .work-header {
     text-align: center;
     align-items: center;
@@ -6,31 +5,40 @@
 
 .ongoingwork {
     font-size: 400%;
-    margin-bottom: 5%;
+    padding-bottom: 100px;
 }
 
 .book-covers {
-    text-align: center; 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    justify-content: center;
+    gap: 50px;
     padding: 20px;
+    padding: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 60px;
 }
 
 .book-cover {
-    border: 1px solid white;
+    border: 1px white solid;
+    background-image: linear-gradient(180deg, black, #915F6D);
     text-align: center;
     width: 200px;
     height: 300px;
-    display: inline-block; 
-    vertical-align: top; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
     color: white;
-    margin-right: 5px;
-    margin-left: 5px;
     position: relative;
 }
 
 h2 {
     font-family: 'Spline Sans Mono', monospace;
+    padding-bottom: 120px;
+    padding-top:120px;
 }
-
 
 .trash {
     width: 40px;
@@ -39,4 +47,5 @@ h2 {
     bottom: 5px;
     right: 5px;
     opacity: .5;
+    cursor: pointer;
 }

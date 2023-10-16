@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/ongoingwork.css';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "../styles/ongoingwork.css";
 
-import Trash from '../images/delete.png';
+import Trash from "../images/delete.png";
 
-import decode from 'jwt-decode';
+import decode from "jwt-decode";
 
 function Ongoingwork() {
   const [novels, setNovels] = useState([]);
-  const token = localStorage.getItem('jwt');
+  const token = localStorage.getItem("jwt");
   const currentUserEmail = decode(token).email;
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function Ongoingwork() {
         }
       })
       .catch((error) => {
-        console.error('Error fetching novels: ', error);
+        console.error("Error fetching novels: ", error);
       });
 
     return () => {
@@ -32,13 +32,13 @@ function Ongoingwork() {
   }, [currentUserEmail]);
 
   async function handleDeleteNovel(event) {
-    const novelId = event.target.parentNode.parentNode.getAttribute('data-id');
+    const novelId = event.target.parentNode.parentNode.getAttribute("data-id");
 
     try {
       const response = await fetch(`/api/novels/${novelId}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
@@ -60,7 +60,7 @@ function Ongoingwork() {
           <div className="book-cover" key={novel._id} data-id={novel._id}>
             <Link
               to={`/writing/${novel._id}?title=${novel.title}`}
-              style={{ textDecoration: 'none', color: 'inherit' }}
+              style={{ textDecoration: "none", color: "inherit" }}
             >
               <h2>{novel.title}</h2>
             </Link>
@@ -68,7 +68,7 @@ function Ongoingwork() {
               <img src={Trash} className="trash" alt="Delete" />
             </div>
           </div>
-        ))}
+        ))};
       </div>
     </div>
   );
