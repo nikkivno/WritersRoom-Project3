@@ -1,9 +1,7 @@
-footer {
+.footer {
     display: flex;
     flex-direction: column;
     color: whitesmoke;
-    background-color: black;
-    font-size: smaller;
     text-align: center;
     bottom: 0%;
     position: fixed;

@@ -64,7 +64,7 @@ function Ongoingwork() {
               <img src={Trash} className="trash" />
             </div>
           </div>
-        ))}
+        ))} 
       </div>
     </div>
   );
