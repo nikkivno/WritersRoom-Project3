@@ -4,8 +4,10 @@ import '../styles/footer.css';
 
 function Footer() {
     return (
-        <div className='copyright'>
-        <h4>copyright 2023</h4>
+        <div>
+            <div className='footer'>
+                 <h4>copyright 2023</h4>
+            </div>
         </div>
     )
 }
