@@ -52,13 +52,8 @@ h2 {
 }
 
 button#deleteBttn {
-    border: none;
     background-color: transparent;
     padding: 0;
-}
-
-button #deleteBttn:hover {
-    border: 1px black solid;
-    background: white;
-    cursor: pointer;
+    width: 200px;
+    margin-top: 50px;
 }

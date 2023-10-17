@@ -99,7 +99,7 @@ function Step2() {
             value={textInput1}
             name="textInput1"
             onChange={handleInputChange}
-            type="text"
+            type="textarea"
             className='steps'
             required
           />
@@ -112,7 +112,7 @@ function Step2() {
             value={textInput2}
             name="textInput2"
             onChange={handleInputChange}
-            type="text"
+            type="textarea"
             className='steps'
             required
           />
@@ -123,7 +123,7 @@ function Step2() {
             value={textInput3}
             name="textInput3"
             onChange={handleInputChange}
-            type="text"
+            type="textarea"
             className='steps'
             required
           />
@@ -134,7 +134,7 @@ function Step2() {
             value={textInput4}
             name="textInput4"
             onChange={handleInputChange}
-            type="text"
+            type="textarea"
             className='steps'
             required
           />
@@ -148,7 +148,7 @@ function Step2() {
             value={textInput5}
             name="textInput5"
             onChange={handleInputChange}
-            type="text"
+            type="textarea"
             className='steps'
             required
           />
