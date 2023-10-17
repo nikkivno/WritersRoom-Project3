@@ -43,6 +43,10 @@ input {
     font-family: 'Spline Sans Mono', monospace; 
 }
 
+input:focus {
+    outline: none;
+}
+
 button {
     background-color: white;
     border: black;
