@@ -134,7 +134,7 @@ export function Writing() {
             onInit={(evt, editor) => (editorRef.current = editor)}
             initialValue={editorInitialValue}
             init={{
-              height: 700,
+              height: 600,
               width: '100%',
               menubar: false,
               browser_spellcheck: true,
