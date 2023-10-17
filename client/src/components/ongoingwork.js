@@ -78,26 +78,43 @@ function Ongoingwork() {
     }
   }
 
+  function renderNovels() {
+    console.log(novels.length);
+    if (novels.length !== 0) {
+      return novels.map((novel) => (
+        <div className="book-cover" key={novel._id} data-id={novel._id}>
+          <Link
+            to={`/writing/${novel._id}?title=${novel.title}`}
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+            <h2>{novel.title}</h2>
+          </Link>
+          <div onClick={handleDeleteNovel}>
+            <img src={Trash} className="trash" alt="Delete" />
+          </div>
+        </div>
+      ));
+    } else {
+      return (
+        <div style={{ alignText: 'center' }}>
+          <p>
+            You have no novels in progress. Go to the{' '}
+            <Link to="/newwork" style={{ color: 'inherit' }}>
+              New Work
+            </Link>{' '}
+            page to start a new project!
+          </p>
+        </div>
+      );
+    }
+  }
+
   return (
     <div>
       <div className="work-header">
         <h1 className="ongoingwork">ongoing Work</h1>
       </div>
-      <div className="book-covers">
-        {novels.map((novel) => (
-          <div className="book-cover" key={novel._id} data-id={novel._id}>
-            <Link
-              to={`/writing/${novel._id}?title=${novel.title}`}
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <h2>{novel.title}</h2>
-            </Link>
-            <div onClick={handleDeleteNovel}>
-              <img src={Trash} className="trash" alt="Delete" />
-            </div>
-          </div>
-        ))};
-      </div>
+      <div className="book-covers">{renderNovels()}</div>
       <div className="book-covers">
         <button id="deleteBttn" onClick={handleDeleteAccount}>
           delete account
