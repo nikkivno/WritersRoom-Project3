@@ -12,32 +12,35 @@ import Step4 from './components/step4';
 import Writing from './components/writing';
 import Ongoingwork from './components/ongoingwork';
 import Main from './components/main';
+import AuthService from './utils/auth';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     // Get JWT from local storage
-    const jwt = localStorage.getItem('jwt');
+    const token = AuthService.getToken();
 
     // Token validation logic
     async function validateToken() {
       try {
         const response = await fetch('/api/validate', {
           headers: {
-            'x-access-token': jwt,
+            'x-access-token': token,
           },
         });
 
-        if (response.ok) {
+        if (response.ok && AuthService.loggedIn()) {
           setIsAuthenticated(true);
+        } else {
+          setIsAuthenticated(false);
         }
       } catch (error) {
         console.error('Error validating token:', error);
       }
     }
 
-    if (jwt) {
+    if (token) {
       validateToken();
     }
   }, []);

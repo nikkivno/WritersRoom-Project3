@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/ongoingwork.css';
+import AuthService from '../utils/auth';
 
 import Trash from '../images/delete.png';
 
-import decode from 'jwt-decode';
-
 function Ongoingwork() {
   const [novels, setNovels] = useState([]);
-  const token = localStorage.getItem('jwt');
-  const currentUserEmail = decode(token).email;
+  const currentUserEmail = AuthService.getProfile().email;
 
   useEffect(() => {
     let isMounted = true;
@@ -58,7 +56,7 @@ function Ongoingwork() {
     );
 
     if (confirmDelete) {
-      const userId = localStorage.getItem('user_id');
+      const userId = AuthService.getProfile().user_id;
 
       try {
         const response = await fetch(`/api/users/${userId}`, {
@@ -70,7 +68,7 @@ function Ongoingwork() {
 
         if (response.ok) {
           alert('Account successfully deleted.');
-          localStorage.removeItem('jwt');
+          AuthService.logout();
           localStorage.clear();
           window.location.href = '/';
         }
