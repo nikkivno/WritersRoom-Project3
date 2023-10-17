@@ -93,7 +93,7 @@ function Prompt() {
           placeholder=""
           required
         />
-        <button onClick={() => setLoading(!loading)}>prompt Me</button>
+        <button>prompt Me</button>
         {loading && (
           <div className="overlay">
             <PropagateLoader color="#915F6D" loading={loading} />
