@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import '../styles/prompt.css';
-import decode from 'jwt-decode';
 import PropagateLoader from 'react-spinners/PropagateLoader';
+import AuthService from '../utils/auth';
 
 function Prompt() {
   const [loading, setLoading] = useState(false);
@@ -47,8 +47,7 @@ function Prompt() {
   const handleNextStep = async (e) => {
     e.preventDefault();
     const promptEl = document.getElementById('generatedPrompt');
-    const token = localStorage.getItem('jwt');
-    const userEmail = decode(token).email;
+    const userEmail = AuthService.getProfile().email;
 
     localStorage.setItem('promptText', promptEl.innerHTML);
 
@@ -93,7 +92,7 @@ function Prompt() {
           placeholder=""
           required
         />
-        <button onClick={() => setLoading(!loading)}>prompt Me</button>
+        <button>prompt Me</button>
         {loading && (
           <div className="overlay">
             <PropagateLoader color="#915F6D" loading={loading} />

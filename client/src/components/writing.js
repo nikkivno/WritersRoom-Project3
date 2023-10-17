@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { useParams } from 'react-router-dom';
 import '../styles/writing.css';
-import decode from 'jwt-decode';
+import AuthService from '../utils/auth';
 
 export function Writing() {
   const editorRef = useRef(null);
@@ -21,32 +21,32 @@ export function Writing() {
   const params = useParams();
 
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      const email = decode(token).email;
+    if (AuthService.loggedIn()) {
+      const email = AuthService.getProfile().email;
       setUserEmail(email);
       setPromptId(localStorage.getItem('promptId'));
     }
+    if (!promptText) {
+      if (params.novelId) {
+        fetch(`/api/novels/${params.novelId}`)
+          .then((response) => response.json())
+          .then((data) => {
+            setPromptId(data.prompt_id);
+            setCatalystData(JSON.parse(data.prompt_id.catalyst_input));
+            setMidpointData(JSON.parse(data.prompt_id.midpoint_input));
+            setEndingData(JSON.parse(data.prompt_id.ending_input));
 
-    if (params.novelId) {
-      fetch(`/api/novels/${params.novelId}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setPromptId(data.prompt_id);
-          setCatalystData(JSON.parse(data.prompt_id.catalyst_input));
-          setMidpointData(JSON.parse(data.prompt_id.midpoint_input));
-          setEndingData(JSON.parse(data.prompt_id.ending_input));
-
-          setEditingNovel(data);
-          setPromptText(data.prompt_id.prompt);
-        })
-        .catch((error) => {
-          console.error('Error fetching novel data: ', error);
-        });
-    } else if (userEmail && promptId) {
-      fetchPrompt(promptId);
+            setEditingNovel(data);
+            setPromptText(data.prompt_id.prompt);
+          })
+          .catch((error) => {
+            console.error('Error fetching novel data: ', error);
+          });
+      } else if (userEmail && promptId) {
+        fetchPrompt(promptId);
+      }
     }
-  }, [params.novelId, userEmail, promptId]);
+  }, [params.novelId, userEmail, promptId, promptText]);
 
   useEffect(() => {
     if (editingNovel) {
@@ -72,16 +72,8 @@ export function Writing() {
   const log = async () => {
     if (editorRef.current) {
       const novelId = params.novelId;
-      const token = localStorage.getItem('jwt');
-      const userEmail = decode(token).email;
 
-      const novelData = {
-        title: titleInput,
-        text_input: editorRef.current.getContent(),
-        email: userEmail,
-        prompt_id: promptId,
-      };
-
+      let novelData;
       try {
         let reqUrl;
         let method;
@@ -89,9 +81,19 @@ export function Writing() {
         if (novelId) {
           reqUrl = `/api/novels/${novelId}`;
           method = 'PUT';
+          novelData = {
+            title: titleInput,
+            text_input: editorRef.current.getContent(),
+          };
         } else {
           reqUrl = `/api/novels`;
           method = 'POST';
+          novelData = {
+            title: titleInput,
+            text_input: editorRef.current.getContent(),
+            email: userEmail,
+            prompt_id: promptId,
+          };
         }
 
         const response = await fetch(reqUrl, {

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import EyeClose from '../images/eye-close.png';
 import EyeOpen from '../images/eye-open.png';
 import '../styles/login.css';
+import AuthService from '../utils/auth';
 
 function Login() {
   const [loginEmail, setLoginEmail] = useState('');
@@ -34,12 +35,6 @@ function Login() {
     }
   };
 
-  const handleSuccess = (token, userId) => {
-    localStorage.setItem('jwt', token);
-    localStorage.setItem('user_id', userId);
-    navigate('/ongoingwork');
-  };
-
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,19 +45,18 @@ function Login() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: loginEmail,
+          email: loginEmail.toLowerCase(),
           password: loginPassword,
         }),
       });
 
+      const data = await response.json();
+
       if (response.status === 400) {
-        const data = await response.json();
         alert(data.message);
       } else if (response.status === 200) {
-        const data = await response.json();
-        console.log(data);
         console.log('Success logging in.');
-        handleSuccess(data.token, data._id);
+        AuthService.login(data.token, data._id);
       }
     } catch (error) {
       console.log('Error logging in: ', error);
@@ -86,14 +80,13 @@ function Login() {
         }),
       });
 
+      const data = await response.json();
+
       if (response.status === 400 || response.status === 409) {
-        const data = await response.json();
         alert(data.message);
       } else if (response.status === 200) {
-        const data = await response.json();
-        console.log(data);
         console.log('Success registering.');
-        handleSuccess(data.token, data._id);
+        AuthService.login(data.token, data._id);
       }
     } catch (error) {
       console.log('Error registering: ', error);

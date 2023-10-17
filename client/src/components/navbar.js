@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import '../styles/navbar.css';
+import AuthService from '../utils/auth';
 
 function Navbar() {
   const currentPage = window.location.pathname;
@@ -11,6 +12,7 @@ function Navbar() {
   // console.warn(user);
 
   function logOut() {
+    AuthService.logout();
     localStorage.clear();
     navigate('/');
   }
