@@ -133,7 +133,7 @@ export function Writing() {
             initialValue={editorInitialValue}
             init={{
               height: 550,
-              width: 1000,
+              width: 1200,
               menubar: false,
               browser_spellcheck: true,
               plugins: [
