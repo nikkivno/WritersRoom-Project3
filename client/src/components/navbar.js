@@ -17,6 +17,31 @@ function Navbar() {
     navigate('/');
   }
 
+  function loginLogout() {
+    if (AuthService.loggedIn()) {
+      console.log('Logged in');
+      return (
+        <li onClick={logOut}>
+          <Link to="/" className={currentPage === '/' ? 'active' : ''}>
+            logout
+          </Link>
+        </li>
+      );
+    } else {
+      console.log('Logged out');
+      return (
+        <li>
+          <Link
+            to="/login"
+            className={currentPage === '/login' ? 'active' : ''}
+          >
+            login/sign up
+          </Link>
+        </li>
+      );
+    }
+  }
+
   return (
     <nav>
       <div className="title">
@@ -27,14 +52,7 @@ function Navbar() {
         </h1>
       </div>
       <ul>
-        <li>
-          <Link
-            to="/login"
-            className={currentPage === '/login' ? 'active' : ''}
-          >
-            login/sign up
-          </Link>
-        </li>
+        {loginLogout()}
         <li>
           <Link
             to="/about"
@@ -57,11 +75,6 @@ function Navbar() {
             className={currentPage === '/ongoingwork' ? 'active' : ''}
           >
             ongoing Work
-          </Link>
-        </li>
-        <li onClick={logOut}>
-          <Link to="/" className={currentPage === '/' ? 'active' : ''}>
-            logout
           </Link>
         </li>
       </ul>
