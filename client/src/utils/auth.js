@@ -31,7 +31,7 @@ class AuthService {
   login(idToken, userId) {
     localStorage.setItem('id_token', idToken);
     localStorage.setItem('user_id', userId);
-    window.location.assign('/');
+    window.location.assign('/ongoingwork');
   }
 
   logout() {

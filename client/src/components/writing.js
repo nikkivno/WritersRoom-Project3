@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { useParams } from 'react-router-dom';
 import '../styles/writing.css';
-import decode from 'jwt-decode';
+import AuthService from '../utils/auth';
 
 export function Writing() {
   const editorRef = useRef(null);
@@ -21,9 +21,8 @@ export function Writing() {
   const params = useParams();
 
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      const email = decode(token).email;
+    if (AuthService.loggedIn()) {
+      const email = AuthService.getProfile().email;
       setUserEmail(email);
       setPromptId(localStorage.getItem('promptId'));
     }
@@ -73,8 +72,6 @@ export function Writing() {
   const log = async () => {
     if (editorRef.current) {
       const novelId = params.novelId;
-      const token = localStorage.getItem('jwt');
-      const userEmail = decode(token).email;
 
       let novelData;
       try {
