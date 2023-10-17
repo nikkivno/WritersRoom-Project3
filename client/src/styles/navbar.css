@@ -30,7 +30,6 @@ nav ul {
     width: 100%;
     margin-right: 5%;
     align-items: center;
-    font-size: medium;
 }
 
 nav h1 a {
@@ -53,3 +52,18 @@ nav li a:hover {
     color: #915F6D;
     text-decoration: overline #915F6D;
 }
+
+nav li:not(:last-child):after {
+    content: "|";
+    margin: 0 10px; 
+    color: white;
+    font-size: larger;
+}
+
+
+
+
+
+
+
+

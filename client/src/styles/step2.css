@@ -11,7 +11,12 @@ input, label {
     border-radius: 7px;
     width: 700px;
     height: 200px;
-    vertical-align: top;
+}
+
+.steps:focus {
+    outline: none;
+    box-shadow: 15px 15px;
+    background-color: white;
 }
 
 label {
@@ -19,7 +24,7 @@ label {
     margin-right: 10px;
     font-size: larger;
     font-family: 'Spline Sans Mono', monospace;
-    margin: 10px;
+    margin: 20px;
 }
 
 .step2Title {
@@ -36,4 +41,8 @@ label {
 
 .nextstep {
     margin-bottom: 100px;
+}
+
+button {
+    margin-top: 30px;
 }
