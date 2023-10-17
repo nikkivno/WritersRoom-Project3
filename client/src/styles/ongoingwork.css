@@ -49,3 +49,8 @@ h2 {
     opacity: .5;
     cursor: pointer;
 }
+
+#deleteBttn {
+    width: 200px;
+    background-color: transparent;
+}
