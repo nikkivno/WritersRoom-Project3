@@ -30,7 +30,6 @@ nav ul {
     width: 100%;
     margin-right: 5%;
     align-items: center;
-    font-size: medium;
 }
 
 nav h1 a {
@@ -55,11 +54,13 @@ nav li a:hover {
 }
 
 nav li:not(:last-child):after {
-    content: "|"; /* Add vertical line content */
-    margin: 0 10px; /* Adjust spacing as needed */
+    content: "|";
+    margin: 0 25px; 
     color: white;
     font-size: larger;
 }
+
+
 
 
 

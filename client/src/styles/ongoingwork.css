@@ -17,7 +17,7 @@
     padding: 20px;
     margin-left: 200px;
     margin-right: 200px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 
 .book-cover {
@@ -51,6 +51,11 @@ h2 {
 }
 
 #deleteBttn {
-    width: 200px;
-    background-color: transparent;
+    width: 180px;
+    height: 20px;
+    font-size: 15px;
+    border: none;
+    margin-left: 800px;
+    color: white;
+    background: transparent;
 }
