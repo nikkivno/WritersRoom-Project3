@@ -15,7 +15,7 @@ function Ongoingwork() {
     let isMounted = true;
 
     // Fetch novels based on the current user's email
-    fetch(`http://localhost:3000/api/novels?email=${currentUserEmail}`)
+    fetch(`/api/novels?email=${currentUserEmail}`)
       .then((response) => response.json())
       .then((data) => {
         if (isMounted) {
