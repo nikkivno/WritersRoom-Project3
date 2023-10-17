@@ -17,9 +17,13 @@
 
 Writers Room is a website geared towards assisting writers to jump start their novels/story ideas. It provides prompts that engage the writer and provide useful elements to help get started.
 
+Technologies used: React, Node, MongoDB, OpenAI, JWT
+
 ## Usage
 
 Visit website, Sign up or login, Choose New Work or Ongoing Work. Follow the Prompts if choosing the New Work option.
+
+Link: https://writers-room-2023-1fe71a40c61d.herokuapp.com/
 
 ![Homepage](./client/src/images/writers-room-homepage.png)
 
