@@ -53,3 +53,15 @@ nav li a:hover {
     color: #915F6D;
     text-decoration: overline #915F6D;
 }
+
+nav li:not(:last-child):after {
+    content: "|"; /* Add vertical line content */
+    margin: 0 10px; /* Adjust spacing as needed */
+    color: white;
+    font-size: larger;
+}
+
+
+
+
+
