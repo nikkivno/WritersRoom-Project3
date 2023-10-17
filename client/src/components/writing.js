@@ -1,4 +1,4 @@
- import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { useParams } from 'react-router-dom';
 import '../styles/writing.css';
@@ -27,27 +27,27 @@ export function Writing() {
       setUserEmail(email);
       setPromptId(localStorage.getItem('promptId'));
     }
-if(!promptText){
-    if (params.novelId) {
-      fetch(`/api/novels/${params.novelId}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setPromptId(data.prompt_id);
-          setCatalystData(JSON.parse(data.prompt_id.catalyst_input));
-          setMidpointData(JSON.parse(data.prompt_id.midpoint_input));
-          setEndingData(JSON.parse(data.prompt_id.ending_input));
+    if (!promptText) {
+      if (params.novelId) {
+        fetch(`/api/novels/${params.novelId}`)
+          .then((response) => response.json())
+          .then((data) => {
+            setPromptId(data.prompt_id);
+            setCatalystData(JSON.parse(data.prompt_id.catalyst_input));
+            setMidpointData(JSON.parse(data.prompt_id.midpoint_input));
+            setEndingData(JSON.parse(data.prompt_id.ending_input));
 
-          setEditingNovel(data);
-          setPromptText(data.prompt_id.prompt);
-        })
-        .catch((error) => {
-          console.error('Error fetching novel data: ', error);
-        });
-    } else if (userEmail && promptId) {
-      fetchPrompt(promptId);
-    }}
-
-  }, [params.novelId, userEmail, promptId]);
+            setEditingNovel(data);
+            setPromptText(data.prompt_id.prompt);
+          })
+          .catch((error) => {
+            console.error('Error fetching novel data: ', error);
+          });
+      } else if (userEmail && promptId) {
+        fetchPrompt(promptId);
+      }
+    }
+  }, [params.novelId, userEmail, promptId, promptText]);
 
   useEffect(() => {
     if (editingNovel) {
@@ -76,9 +76,7 @@ if(!promptText){
       const token = localStorage.getItem('jwt');
       const userEmail = decode(token).email;
 
-   
-      
-        let novelData;
+      let novelData;
       try {
         let reqUrl;
         let method;
@@ -89,16 +87,16 @@ if(!promptText){
           novelData = {
             title: titleInput,
             text_input: editorRef.current.getContent(),
-          }
+          };
         } else {
           reqUrl = `/api/novels`;
           method = 'POST';
           novelData = {
             title: titleInput,
-            text_input:editorRef.current.getContent(),
-              email: userEmail,
-              prompt_id: promptId,
-          }
+            text_input: editorRef.current.getContent(),
+            email: userEmail,
+            prompt_id: promptId,
+          };
         }
 
         const response = await fetch(reqUrl, {
