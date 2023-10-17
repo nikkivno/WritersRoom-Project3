@@ -34,7 +34,8 @@ form {
 }
 
 input {
-    margin-top: 15px;
+    margin-top: 15px !important;
+    border-radius: 7px;
     height: 40px;
     width: 400px;
     font-size: 20px;

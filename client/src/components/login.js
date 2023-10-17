@@ -50,6 +50,8 @@ function Login() {
         }),
       });
 
+      console.log (response);
+      
       const data = await response.json();
 
       if (response.status === 400) {
@@ -59,7 +61,7 @@ function Login() {
         AuthService.login(data.token, data._id);
       }
     } catch (error) {
-      console.log('Error logging in: ', error);
+      console.log(error);
     }
   };
 

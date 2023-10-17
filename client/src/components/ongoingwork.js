@@ -96,8 +96,7 @@ function Ongoingwork() {
               <img src={Trash} className="trash" alt="Delete" />
             </div>
           </div>
-        ))}
-        ;
+        ))};
       </div>
       <div className="book-covers">
         <button id="deleteBttn" onClick={handleDeleteAccount}>

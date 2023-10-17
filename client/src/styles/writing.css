@@ -69,3 +69,15 @@
     color: transparent;
   }
 
+  /* Media Queries */
+
+  @media only screen and (max-width: 768px) {
+    .full-container {
+      flex-direction: column;
+    }
+
+    .texteditor {
+      max-width: 700px;
+      padding-left: 20px !important;
+    }
+  }
