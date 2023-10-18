@@ -95,7 +95,7 @@ function Step3() {
             How does each character cope with the inciting incident?
             (ex.adjectives)
           </label>
-          <input
+          <textarea
             value={text1}
             name="text1"
             onChange={handleInputChange}
@@ -108,7 +108,7 @@ function Step3() {
           <label htmlFor="q2">
             What happens in the story because of the inciting incident?
           </label>
-          <input
+          <textarea
             value={text2}
             name="text2"
             onChange={handleInputChange}
@@ -121,7 +121,7 @@ function Step3() {
           <label htmlFor="q3">
             What is each character struggling with? (ex. personal struggles)
           </label>
-          <input
+          <textarea
             value={text3}
             name="text3"
             onChange={handleInputChange}
@@ -134,7 +134,7 @@ function Step3() {
           <label htmlFor="q4">
             What interpersonal struggles are happening between characters?
           </label>
-          <input
+          <textarea
             value={text4}
             name="text4"
             onChange={handleInputChange}

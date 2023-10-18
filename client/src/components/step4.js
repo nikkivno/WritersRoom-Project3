@@ -88,7 +88,7 @@ function Step4() {
       <form id="conclusion" onSubmit={handleFormSubmit}>
         <div>
           <label>What plot moments lead up to the climax?</label>
-          <input
+          <textarea
             value={textarea1}
             name="textarea1"
             onChange={handleInputChange}
@@ -99,7 +99,7 @@ function Step4() {
         </div>
         <div>
           <label>What is the pinnacle of the story? (ex. The climax)</label>
-          <input
+          <textarea
             value={textarea2}
             name="textarea2"
             onChange={handleInputChange}
@@ -113,7 +113,7 @@ function Step4() {
             What is the fallout from the events of the story? (ex. what happens
             to characters, town, etc)
           </label>
-          <input
+          <textarea
             value={textarea3}
             name="textarea3"
             onChange={handleInputChange}

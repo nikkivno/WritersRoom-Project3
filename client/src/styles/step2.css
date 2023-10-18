@@ -7,11 +7,17 @@ input, label {
     margin: 0 auto;
 }
 
+input, .steps {
+    vertical-align: top;
+    text-wrap: wrap;
+}
+
 .steps {
     border-radius: 7px;
     width: 700px;
     height: 200px;
 }
+
 
 .steps:focus {
     outline: none;
