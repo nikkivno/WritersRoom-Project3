@@ -1,94 +1,157 @@
 h1 {
-    color: white;
-    font-family: 'Major Mono Display', monospace;  
+  color: white;
+  font-family: 'Major Mono Display', monospace;
 }
 
 .mainContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    margin-top: 7%;
-    margin-bottom: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 7%;
+  margin-bottom: 10%;
 }
 
 .login {
-    margin: 20px;
-    margin-right: 25%;
-    text-align: center;
-    font-size: 25px;
+  margin: 20px;
+  margin-right: 25%;
+  text-align: center;
+  font-size: 25px;
 }
 
 .signup {
-    margin: 20px;
-    text-align: center;
-    font-size: 25px;
+  margin: 20px;
+  text-align: center;
+  font-size: 25px;
 }
 
 form {
-    display: flex;
-    align-items: center; 
-    justify-content: center;
-    align-self: center;  
-    flex-direction: column; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  flex-direction: column;
 }
 
 input {
-    margin-top: 15px !important;
-    border-radius: 7px;
-    height: 40px;
-    width: 400px;
-    font-size: 20px;
-    padding-right: 40px;
-    font-family: 'Spline Sans Mono', monospace; 
+  margin-top: 15px !important;
+  border-radius: 7px;
+  height: 40px;
+  width: 400px;
+  font-size: 20px;
+  padding-right: 40px;
+  font-family: 'Spline Sans Mono', monospace;
 }
 
 input:focus {
-    outline: none;
+  outline: none;
 }
 
 button {
-    background-color: white;
-    border: black;
-    border-radius: 7px;
-    margin-top: 15px;
-    height: 30px;
-    width: 120px;
-    font-size: 15px;
-    font-family: 'Major Mono Display', monospace;  
-    cursor: pointer;
+  background-color: white;
+  border: black;
+  border-radius: 7px;
+  margin-top: 15px;
+  height: 30px;
+  width: 120px;
+  font-size: 15px;
+  font-family: 'Major Mono Display', monospace;
+  cursor: pointer;
 }
 
 .input-box {
-    display: flex;
-    align-items: center;
-    position: relative;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.input-box input {
+  margin-top: 15px;
+  padding-right: 40px;
+}
+
+.input-box img {
+  width: 30px;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 60%;
+  transform: translateY(-50%);
+}
+
+.vertical-divider {
+  content: '';
+  width: 5px;
+  background-color: white;
+  height: 60%;
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  margin: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 7px;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1500px) {
+  .login {
+    margin: 10px;
+    margin-right: 15%;
   }
-  
-  .input-box input {
-    margin-top: 15px;
-    padding-right: 40px;
-  }
-  
-  .input-box img {
-    width: 30px;
-    cursor: pointer;
-    position: absolute;
-    right: 10px; 
-    top: 60%;
-    transform: translateY(-50%);
+
+  .signup {
+    margin: 10px;
   }
 
   .vertical-divider {
-    content: '';
-    width: 5px;
-    background-color: white;
-    height: 60%;
-    position: absolute;
-    top: 100px;
-    bottom: 0;
-    margin: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 7px;
+    top: 200px;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  input {
+    height: 30px;
+    width: 250px;
+  }
+
+  .input-box img {
+    width: 21px;
+  }
+
+  h1 {
+    font-size: 150%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .mainContainer {
+    flex-direction: column;
+  }
+
+  .vertical-divider {
+    height: 5px;
+    width: 65%;
+    position: relative;
+    top: 0;
+    transform: none;
+    left: 0;
+  }
+
+  .login {
+    margin: 10px;
+    margin-bottom: 25px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 100%;
+  }
+
+  input {
+    font-size: 15px;
+    height: 25px;
+  }
 }
