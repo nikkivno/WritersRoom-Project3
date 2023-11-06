@@ -71,6 +71,7 @@ function Step4() {
 
       if (response.ok) {
         alert('Input saved successfully');
+        window.location.href = '/writing';
       }
     } catch (error) {
       console.log('Error saving input: ', error);
@@ -122,18 +123,9 @@ function Step4() {
             required
           />
         </div>
-        <button type="submit">save</button>
+        <button type="submit">Get Writing!</button>
       </form>
-      <div className="nextstep">
-        <button className="getwriting">
-          <a
-            href="/writing"
-            className={currentPage === '/writing' ? 'active' : ''}
-          >
-            Get Writing!
-          </a>
-        </button>
-      </div>
+
     </div>
   );
 }

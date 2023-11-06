@@ -75,6 +75,7 @@ function Step3() {
 
       if (response.ok) {
         alert('Input saved successfully');
+        window.location.href = '/step4';
       }
     } catch (error) {
       console.log('Error saving input: ', error);
@@ -143,15 +144,8 @@ function Step3() {
             required
           />
         </div>
-        <button type="submit">save</button>
+        <button type="submit">next step</button>
       </form>
-      <div className="nextstep">
-        <button className="tostep4">
-          <a href="/step4" className={currentPage === '/step4' ? 'active' : ''}>
-            next step
-          </a>
-        </button>
-      </div>
     </div>
   );
 }

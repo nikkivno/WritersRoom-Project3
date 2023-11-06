@@ -65,6 +65,7 @@ function Step2() {
       action: textInput5,
     });
 
+
     try {
       const response = await fetch(`/api/prompts/${promptId}`, {
         method: 'PUT',
@@ -78,6 +79,7 @@ function Step2() {
 
       if (response.ok) {
         alert('Input saved successfully');
+        window.location.href = '/step3';
       }
     } catch (error) {
       console.log('Error saving input: ', error);
@@ -153,10 +155,10 @@ function Step2() {
             required
           />
         </div>
-        <button type="submit">save</button>
+        <button type="submit">next step</button>
       </form>
       <div>
-        <div className="nextstep">
+        {/* <div className="nextstep">
           <button>
             <a
               href="/step3"
@@ -165,7 +167,7 @@ function Step2() {
               next step
             </a>
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -52,7 +52,6 @@ function Navbar() {
         </h1>
       </div>
       <ul>
-        {loginLogout()}
         <li>
           <Link
             to="/about"
@@ -77,6 +76,7 @@ function Navbar() {
             ongoing Work
           </Link>
         </li>
+        {loginLogout()}
       </ul>
     </nav>
   );
