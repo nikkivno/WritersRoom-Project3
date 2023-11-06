@@ -1,69 +1,113 @@
-html, body {
-    background-color: #915F6D;
-    background-image: linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,1));
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
+html,
+body {
+  background-color: #915f6d;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
 }
 
 nav {
-    display: flex;
-    width: 100%;
-    height: 100px;
-    justify-content: flex-end;
-    
+  display: flex;
+  width: 100%;
+  height: 100px;
+  justify-content: flex-end;
 }
 
 .title {
-    color: white;
-    width: 100%;
-    padding-left: 20px;
-    font-family: 'Major Mono Display', monospace;  
-    font-size: 175%;
-    
+  color: white;
+  width: 100%;
+  padding-left: 20px;
+  font-family: 'Major Mono Display', monospace;
+  font-size: 175%;
 }
 
 nav ul {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-right: 5%;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-right: 5%;
+  align-items: center;
 }
 
 nav h1 a {
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 nav li a {
-    display: inline-block;
-    color: whitesmoke; 
-    font-family: 'Major Mono Display', monospace;  
-    font-size: larger;
-    margin: 5px;
-    color: white;
-    text-decoration: none;
+  display: inline-block;
+  color: whitesmoke;
+  font-family: 'Major Mono Display', monospace;
+  font-size: larger;
+  margin: 5px;
+  color: white;
+  text-decoration: none;
 }
 
 nav li a:hover {
-    color: #915F6D;
-    text-decoration: overline #915F6D;
+  color: #915f6d;
+  text-decoration: overline #915f6d;
 }
 
 nav li:not(:last-child):after {
-    content: "|";
-    margin: 0 10px; 
-    color: white;
-    font-size: larger;
+  content: '|';
+  margin: 0 10px;
+  color: white;
+  font-size: larger;
 }
 
+/* Responsive */
 
+@media screen and (max-width: 1500px) {
+  nav {
+    flex-direction: column;
+    height: 200px;
+  }
 
+  nav ul {
+    justify-content: flex-end;
+  }
+}
 
+@media screen and (max-width: 750px) {
+  nav {
+    justify-content: center;
+  }
 
+  .title {
+    text-align: center;
+    font-size: 150%;
+  }
 
+  nav ul {
+    justify-content: center;
+    font-size: 80%;
+  }
+}
 
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 120%;
+  }
+  nav ul {
+    font-size: 65%;
+  }
 
+  nav li a {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .title {
+    font-size: 110%;
+  }
+
+  nav ul {
+    font-size: 55%;
+  }
+}

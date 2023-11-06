@@ -1,12 +1,44 @@
 .step4Title {
-    text-align: center;
+  text-align: center;
 }
 
 .step4Title h1 {
-    font-size: 400%;
+  font-size: 400%;
 }
 
 .getwriting {
-    margin-top: 40px;
-    width: 200px;
+  margin-top: 40px;
+  width: 200px;
+}
+
+@media screen and (max-width: 750px) {
+  .step4Title h1 {
+    font-size: 300%;
+  }
+
+  .steps {
+    width: 450px;
+    font-size: 16px;
+  }
+
+  .promptarea {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .step4Title h1 {
+    font-size: 250%;
+  }
+
+  .steps {
+    width: 350px;
+    font-size: 14px;
+  }
+
+  .promptarea {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
 }

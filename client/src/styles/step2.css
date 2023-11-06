@@ -1,60 +1,93 @@
 form {
-    text-align: center;
+  text-align: center;
 }
 
-input, label {
-    display: block;
-    margin: 0 auto;
+input,
+label {
+  display: block;
+  margin: 0 auto;
 }
 
-input, .steps {
-    vertical-align: top;
-    text-wrap: wrap;
+input,
+.steps {
+  vertical-align: top;
+  text-wrap: wrap;
 }
 
 .steps {
-    border-radius: 7px;
-    width: 700px;
-    height: 200px;
+  border-radius: 7px;
+  width: 700px;
+  height: 200px;
 }
 
-
 .steps:focus {
-    outline: none;
-    box-shadow: 15px 15px;
-    background-color: white;
+  outline: none;
+  box-shadow: 15px 15px;
+  background-color: white;
 }
 
 label {
-    color: white;
-    margin-right: 10px;
-    font-size: larger;
-    font-family: 'Spline Sans Mono', monospace;
-    margin: 20px;
+  color: white;
+  margin-right: 10px;
+  font-size: larger;
+  font-family: 'Spline Sans Mono', monospace;
+  margin: 20px;
 }
 
 .step2Title {
-    text-align: center;
+  text-align: center;
 }
 
 .step2Title h1 {
-    font-size: 400%;
+  font-size: 400%;
 }
 
 .promptarea {
-    margin: 40px 100px 80px 100px;
+  margin: 40px 100px 80px 100px;
 }
 
 .next {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
 button {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .savedMessage {
     font-family: 'Major Mono Display', monospace;  
     color: white;
     margin-top: 20px;
+}
+
+@media screen and (max-width: 750px) {
+  .step2Title h1 {
+    font-size: 300%;
+  }
+
+  .steps {
+    width: 450px;
+    font-size: 16px;
+  }
+
+  .promptarea {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .step2Title h1 {
+    font-size: 250%;
+  }
+
+  .steps {
+    width: 350px;
+    font-size: 14px;
+  }
+
+  .promptarea {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
 }

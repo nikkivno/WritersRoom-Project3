@@ -81,6 +81,16 @@ function Step4() {
       }
     } catch (error) {
       console.log('Error saving input: ', error);
+      return false;
+    }
+  };
+
+  const handlePageChange = async (event) => {
+    event.preventDefault();
+
+    const submitted = await handleFormSubmit(event);
+    if (submitted) {
+      window.location.href = '/writing';
     }
   };
 
@@ -100,7 +110,7 @@ function Step4() {
             name="textarea1"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
@@ -111,7 +121,7 @@ function Step4() {
             name="textarea2"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
@@ -125,7 +135,7 @@ function Step4() {
             name="textarea3"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>

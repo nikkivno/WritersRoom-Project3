@@ -85,6 +85,16 @@ function Step3() {
       }
     } catch (error) {
       console.log('Error saving input: ', error);
+      return false;
+    }
+  };
+
+  const handlePageChange = async (event) => {
+    event.preventDefault();
+
+    const submitted = await handleFormSubmit(event);
+    if (submitted) {
+      window.location.href = '/step3';
     }
   };
 
@@ -107,7 +117,7 @@ function Step3() {
             name="text1"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
@@ -120,7 +130,7 @@ function Step3() {
             name="text2"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
@@ -133,7 +143,7 @@ function Step3() {
             name="text3"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
@@ -146,7 +156,7 @@ function Step3() {
             name="text4"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>

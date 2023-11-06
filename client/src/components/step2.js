@@ -89,13 +89,23 @@ function Step2() {
       }
     } catch (error) {
       console.log('Error saving input: ', error);
+      return false;
+    }
+  };
+
+  const handlePageChange = async (event) => {
+    event.preventDefault();
+
+    const submitted = await handleFormSubmit(event);
+    if (submitted) {
+      window.location.href = '/step3';
     }
   };
 
   return (
     <div>
       <div className="step2Title">
-        <h1>The catylist</h1>
+        <h1>The catalyst</h1>
       </div>
       <div className="promptarea">
         <p id="prompt"></p>
@@ -108,7 +118,7 @@ function Step2() {
             name="textInput1"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
@@ -121,7 +131,7 @@ function Step2() {
             name="textInput2"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
@@ -132,7 +142,7 @@ function Step2() {
             name="textInput3"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
@@ -143,7 +153,7 @@ function Step2() {
             name="textInput4"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
@@ -157,7 +167,7 @@ function Step2() {
             name="textInput5"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
