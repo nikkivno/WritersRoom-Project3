@@ -169,7 +169,7 @@ export function Writing() {
             }}
           />
           <button onClick={log} className="submit">
-            save
+            save project
           </button>
         </div>
         <div className="card-container">

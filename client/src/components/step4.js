@@ -47,6 +47,8 @@ function Step4() {
     }
   };
 
+  const [savedMessage, setSavedMessage] = useState('');
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -70,8 +72,12 @@ function Step4() {
       });
 
       if (response.ok) {
-        alert('Input saved successfully');
-        window.location.href = '/writing';
+        setSavedMessage('Answers saved!');
+        
+        setTimeout (()=> {
+          setSavedMessage('');
+          window.location.href = '/step3';
+        }, 2000);
       }
     } catch (error) {
       console.log('Error saving input: ', error);
@@ -123,7 +129,8 @@ function Step4() {
             required
           />
         </div>
-        <button type="submit">Get Writing!</button>
+        {savedMessage && <div className='savedMessage'>{savedMessage}</div>}
+        <button className='next' type="submit">Get Writing!</button>
       </form>
 
     </div>
