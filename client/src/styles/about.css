@@ -1,24 +1,62 @@
 .aboutheader {
-    color: white;
-    width: 100%;
-    justify-content: center;
+  color: white;
+  width: 100%;
+  justify-content: center;
 }
 
 .about {
-    font-size: 400%;
-    text-align: center;
+  font-size: 400%;
+  text-align: center;
 }
 
 ul {
-    color: white;
-    list-style-type: none;
-    font-family: 'Spline Sans Mono', monospace;   
+  color: white;
+  list-style-type: none;
+  font-family: 'Spline Sans Mono', monospace;
 }
 
 .question {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .aboutlist {
-    margin: 100px 150px 100px 150px;
+  margin: 100px 150px 100px 150px;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1150px) {
+  .aboutlist {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .about {
+    font-size: 300%;
+  }
+
+  .aboutlist {
+    margin: 50px 25px 100px 25px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about {
+    font-size: 250%;
+  }
+
+  .aboutlist {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  ul {
+    font-size: 14px;
+  }
+
+  .question {
+    font-size: 18px;
+  }
 }

@@ -1,53 +1,87 @@
 .mainblock {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .mainheader {
-    display: flex;  
-    margin-top: 150px;
+  display: flex;
+  margin-top: 150px;
 }
 
 .main-text-container {
-    display: inline-block;
-    text-align: center;
-  }
+  display: inline-block;
+  text-align: center;
+}
 
 .typewriter {
-    overflow: hidden;
-    border-right: .1em solid orange;
-    white-space: nowrap;
-    font-size: 90px;
-    animation: typing 4s steps(13, end), blink-caret .75s step-end infinite;
+  overflow: hidden;
+  border-right: 0.1em solid orange;
+  white-space: nowrap;
+  font-size: 90px;
+  animation: typing 4s steps(13, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
   }
-  
-  @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
+  to {
+    width: 100%;
   }
-  
-  @keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: orange; }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+
+.subtitle {
+  color: white;
+  text-align: center;
+  animation: fade-in 4s forwards; /* Add a fade-in animation */
+  opacity: 0; /* Initially make the p element invisible */
+  animation-delay: 4s;
+  font-family: 'Spline Sans Mono', monospace;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1080px) {
+  .typewriter {
+    font-size: 60px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .typewriter {
+    font-size: 48px;
+  }
+  .subtitle {
+    font-size: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .typewriter {
+    font-size: 36px;
   }
 
   .subtitle {
-    color: white;
-    text-align: center;
-    animation: fade-in 4s forwards; /* Add a fade-in animation */
-    opacity: 0; /* Initially make the p element invisible */
-    animation-delay: 4s;
-    font-family: 'Spline Sans Mono', monospace;
+    font-size: 90%;
+  }
 }
-
-
-@keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-
-
-
-

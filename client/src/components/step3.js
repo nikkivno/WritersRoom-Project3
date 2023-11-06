@@ -75,9 +75,20 @@ function Step3() {
 
       if (response.ok) {
         alert('Input saved successfully');
+        return true;
       }
     } catch (error) {
       console.log('Error saving input: ', error);
+      return false;
+    }
+  };
+
+  const handlePageChange = async (event) => {
+    event.preventDefault();
+
+    const submitted = await handleFormSubmit(event);
+    if (submitted) {
+      window.location.href = '/step3';
     }
   };
 
@@ -100,7 +111,7 @@ function Step3() {
             name="text1"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
@@ -113,7 +124,7 @@ function Step3() {
             name="text2"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
@@ -126,7 +137,7 @@ function Step3() {
             name="text3"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
@@ -139,7 +150,7 @@ function Step3() {
             name="text4"
             onChange={handleInputChange}
             type="text"
-            className='steps'
+            className="steps"
             required
           />
         </div>
@@ -147,7 +158,11 @@ function Step3() {
       </form>
       <div className="nextstep">
         <button className="tostep4">
-          <a href="/step4" className={currentPage === '/step4' ? 'active' : ''}>
+          <a
+            href="/step4"
+            onClick={handlePageChange}
+            className={currentPage === '/step4' ? 'active' : ''}
+          >
             next step
           </a>
         </button>
