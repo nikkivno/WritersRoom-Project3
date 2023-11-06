@@ -76,7 +76,7 @@ function Step4() {
         
         setTimeout (()=> {
           setSavedMessage('');
-          window.location.href = '/step3';
+          window.location.href = '/writing';
         }, 2000);
       }
     } catch (error) {
