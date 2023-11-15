@@ -53,6 +53,8 @@ function Step2() {
     }
   };
 
+  const [savedMessage, setSavedMessage] = useState('');
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -64,6 +66,7 @@ function Step2() {
       setting: textInput4,
       action: textInput5,
     });
+
 
     try {
       const response = await fetch(`/api/prompts/${promptId}`, {
@@ -77,8 +80,12 @@ function Step2() {
       });
 
       if (response.ok) {
-        alert('Input saved successfully');
-        return true;
+        setSavedMessage('Answers saved!');
+        
+        setTimeout (()=> {
+          setSavedMessage('');
+          window.location.href = '/step3';
+        }, 2000);
       }
     } catch (error) {
       console.log('Error saving input: ', error);
@@ -164,21 +171,9 @@ function Step2() {
             required
           />
         </div>
-        <button type="submit">save</button>
+        {savedMessage && <div className='savedMessage'>{savedMessage}</div>}
+        <button  className='next' type="submit">next step</button>
       </form>
-      <div>
-        <div className="nextstep">
-          <button>
-            <a
-              href="/step3"
-              onClick={handlePageChange}
-              className={currentPage === '/step3' ? 'active' : ''}
-            >
-              next step
-            </a>
-          </button>
-        </div>
-      </div>
     </div>
   );
 }

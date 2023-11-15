@@ -47,6 +47,8 @@ function Step4() {
     }
   };
 
+  const [savedMessage, setSavedMessage] = useState('');
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -70,8 +72,12 @@ function Step4() {
       });
 
       if (response.ok) {
-        alert('Input saved successfully');
-        return true;
+        setSavedMessage('Answers saved!');
+        
+        setTimeout (()=> {
+          setSavedMessage('');
+          window.location.href = '/writing';
+        }, 2000);
       }
     } catch (error) {
       console.log('Error saving input: ', error);
@@ -133,19 +139,10 @@ function Step4() {
             required
           />
         </div>
-        <button type="submit">save</button>
+        {savedMessage && <div className='savedMessage'>{savedMessage}</div>}
+        <button className='next' type="submit">Get Writing!</button>
       </form>
-      <div className="nextstep">
-        <button className="getwriting">
-          <a
-            href="/writing"
-            onClick={handlePageChange}
-            className={currentPage === '/writing' ? 'active' : ''}
-          >
-            Get Writing!
-          </a>
-        </button>
-      </div>
+
     </div>
   );
 }

@@ -46,12 +46,18 @@ label {
   margin: 40px 100px 80px 100px;
 }
 
-.nextstep {
+.next {
   margin-bottom: 100px;
 }
 
 button {
   margin-top: 30px;
+}
+
+.savedMessage {
+    font-family: 'Major Mono Display', monospace;  
+    color: white;
+    margin-top: 20px;
 }
 
 @media screen and (max-width: 750px) {
