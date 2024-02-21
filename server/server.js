@@ -11,7 +11,10 @@ app.use(express.json());
 
 // Connect to the database using the connection string
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/writers-room', {
+  .connect
+  (process.env.MONGODB_URI
+    //  || 'mongodb://127.0.0.1:27017/writers-room'
+     , {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
